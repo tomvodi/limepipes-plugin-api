@@ -4,5 +4,5 @@ option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols
 import "length.proto";
 
 message Rest {
-    Length length = 1;
+  Length length = 1;
 }

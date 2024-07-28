@@ -12,7 +12,7 @@ func (i Length) MarshalYAML() (interface{}, error) {
 func (i *Length) UnmarshalYAML(value *yaml.Node) error {
 	val, ok := Length_value[value.Value]
 	if !ok {
-		return fmt.Errorf("pitch %s is not a valid pitch", value.Value)
+		return fmt.Errorf("length %s is not a valid value", value.Value)
 	}
 
 	*i = Length(val)

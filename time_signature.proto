@@ -1,0 +1,7 @@
+syntax = "proto3";
+option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel";
+
+message TimeSignature {
+  uint32 beats = 1;
+  uint32 beatType = 2;
+}

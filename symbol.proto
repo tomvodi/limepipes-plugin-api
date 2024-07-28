@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "github.com/tomvodi/limepipes-music-model";
+
+import "symbols/note.proto";
+import "symbols/rest.proto";
+
+message Symbol {
+    oneof symbol {
+        Note note = 1;
+        Rest rest= 2;
+    }
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/pitch";
+
+enum Pitch {
+    NoPitch = 0;
+    LowG = 1;
+    LowA = 2;
+    B = 3;
+    C = 4;
+    D = 5;
+    E = 6;
+    F = 7;
+    HighG = 8;
+    HighA = 9;
+}

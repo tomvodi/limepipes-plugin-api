@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/length";
+
+enum Length {
+    NoLength = 0;
+    Whole = 1;
+    Half = 2;
+    Quarter = 3;
+    Eighth = 4;
+    Sixteenth = 5;
+    Thirtysecond = 6;
+}

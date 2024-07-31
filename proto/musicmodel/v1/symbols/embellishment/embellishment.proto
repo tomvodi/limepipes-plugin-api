@@ -4,7 +4,7 @@ option go_package = "embellishment";
 
 import "musicmodel/v1/pitch/pitch.proto";
 
-enum EmbellishmentType {
+enum Type {
   NoEmbellishment = 0;
   SingleGrace = 1;
   Doubling = 2;
@@ -25,27 +25,27 @@ enum EmbellishmentType {
   DoubleGrace = 17;
 }
 
-enum EmbellishmentVariant {
+enum Variant {
   NoVariant = 0;
   G = 1;
   Half = 2;
   Thumb = 3;
 }
 
-enum EmbellishmentWeight {
+enum Weight {
   NoWeight = 0;
   Light = 1;
   Heavy = 2;
 }
 
 message Embellishment {
-  EmbellishmentType type = 1;
+  Type type = 1;
   // Pitch is set for embellishments that have a pitch regardless of the melody note
   // following it (e.g. single g-grace)
   // Other embellishments have their pitch defined by the melody note following it
   // (e.g. doubling) because a d-doubling can only precede a d-melody note.
   // In these cases, Pitch is set to NoPitch
   pitch.Pitch pitch = 2;
-  EmbellishmentVariant variant = 3;
-  EmbellishmentWeight weight = 4;
+  Variant variant = 3;
+  Weight weight = 4;
 }

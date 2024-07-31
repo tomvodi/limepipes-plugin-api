@@ -4,58 +4,58 @@ import (
 	"fmt"
 )
 
-func (x EmbellishmentType) MarshalYAML() (interface{}, error) {
+func (x Type) MarshalYAML() (interface{}, error) {
 	return x.String(), nil
 }
 
-func (x *EmbellishmentType) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
 	}
 
 	var err error
-	up, ok := EmbellishmentType_value[s]
+	up, ok := Type_value[s]
 	if !ok {
-		return fmt.Errorf("EmbellishmentType value %s is not valid", s)
+		return fmt.Errorf("type value %s is not valid", s)
 	}
-	*x = EmbellishmentType(up)
-	return err
-}
-func (x EmbellishmentVariant) MarshalYAML() (interface{}, error) {
-	return x.String(), nil
-}
-
-func (x *EmbellishmentVariant) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	var s string
-	if err := unmarshal(&s); err != nil {
-		return err
-	}
-
-	var err error
-	up, ok := EmbellishmentVariant_value[s]
-	if !ok {
-		return fmt.Errorf("EmbellishmentVariant value %s is not valid", s)
-	}
-	*x = EmbellishmentVariant(up)
+	*x = Type(up)
 	return err
 }
 
-func (x EmbellishmentWeight) MarshalYAML() (interface{}, error) {
+func (x Variant) MarshalYAML() (interface{}, error) {
 	return x.String(), nil
 }
 
-func (x *EmbellishmentWeight) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Variant) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
 	}
 
 	var err error
-	up, ok := EmbellishmentWeight_value[s]
+	up, ok := Variant_value[s]
 	if !ok {
-		return fmt.Errorf("EmbellishmentWeight value %s is not valid", s)
+		return fmt.Errorf("variant value %s is not valid", s)
 	}
-	*x = EmbellishmentWeight(up)
+	*x = Variant(up)
+	return err
+}
+func (x Weight) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
+}
+
+func (x *Weight) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
+	}
+
+	var err error
+	up, ok := Weight_value[s]
+	if !ok {
+		return fmt.Errorf("weight value %s is not valid", s)
+	}
+	*x = Weight(up)
 	return err
 }

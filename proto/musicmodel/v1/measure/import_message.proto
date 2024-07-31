@@ -1,0 +1,22 @@
+syntax = "proto3";
+package musicmodel.v1.measure;
+option go_package = "measure";
+
+enum Severity {
+  NoSeverity = 0;
+  Info = 1;
+  Warning = 2;
+  Error = 3;
+}
+
+enum Fix {
+  NoFix = 0;
+  SkipSymbol = 1;
+}
+
+message ImportMessage {
+  string symbol = 1;
+  Severity severity = 2;
+  string text = 3;
+  Fix fix = 4;
+}

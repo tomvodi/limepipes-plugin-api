@@ -1,7 +1,8 @@
 syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/embellishment";
+package musicmodel.v1.symbols.embellishment;
+option go_package = "embellishment";
 
-import "pitch.proto";
+import "musicmodel/v1/pitch/pitch.proto";
 
 enum EmbellishmentType {
   NoEmbellishment = 0;
@@ -44,7 +45,7 @@ message Embellishment {
   // Other embellishments have their pitch defined by the melody note following it
   // (e.g. doubling) because a d-doubling can only precede a d-melody note.
   // In these cases, Pitch is set to NoPitch
-  Pitch pitch = 2;
+  pitch.Pitch pitch = 2;
   EmbellishmentVariant variant = 3;
   EmbellishmentWeight weight = 4;
 }

@@ -1,7 +1,8 @@
 syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/timeline";
+package musicmodel.v1.symbols.timeline;
+option go_package = "timeline";
 
-import "boundary.proto";
+import "musicmodel/v1/boundary/boundary.proto";
 
 enum Type {
   NoType = 0;
@@ -23,5 +24,5 @@ enum Type {
 
 message TimeLine {
   Type type = 1;
-  Boundary boundaryType = 2;
+  boundary.Boundary boundary_type = 2;
 }

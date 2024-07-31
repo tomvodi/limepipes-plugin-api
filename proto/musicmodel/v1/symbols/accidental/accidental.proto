@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/accidental";
+package musicmodel.v1.symbols.accidental;
+option go_package = "accidental";
 
 enum Accidental {
   NoAccidental = 0;

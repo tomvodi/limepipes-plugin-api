@@ -1,7 +1,8 @@
 syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/movement";
+package musicmodel.v1.symbols.movement;
+option go_package = "movement";
 
-import "pitch.proto";
+import "musicmodel/v1/pitch/pitch.proto";
 
 enum Type {
   NoMovement = 0;
@@ -43,7 +44,7 @@ enum Variant {
 
 message Movement {
   Type type = 1;
-  repeated Pitch pitches = 2;
+  repeated pitch.Pitch pitches = 2;
   bool fermata = 3;
   Variant variant = 4;
   // Bww symbols for piobaireachd are written with a pitch e.g. edred which
@@ -51,13 +52,13 @@ message Movement {
   // Nevertheless, in some cases, a note with another pitch is preceding the movement
   // so the pitch hint will make sure that no information gets lost in importing bww
   // files
-  Pitch pitchHint = 5;
-  Pitch additionalPitchHint = 6;
-  Pitch pitch = 7; // Pitch, if the movement has a distinct pitch like echo notes
+  pitch.Pitch pitch_hint = 5;
+  pitch.Pitch additional_pitch_hint = 6;
+  pitch.Pitch pitch = 7; // Pitch, if the movement has a distinct pitch like echo notes
   // Abbreviate is true, when the movement should show as its abbreviation symbol and not
   // as every grace note
   bool abbreviate = 8;
 
   bool breabach = 9;
-  bool AMach = 10;
+  bool a_mach = 10;
 }

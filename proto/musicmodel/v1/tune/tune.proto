@@ -1,0 +1,17 @@
+syntax = "proto3";
+package musicmodel.v1.tune;
+option go_package = "tune";
+
+import "musicmodel/v1/measure/measure.proto";
+
+message Tune {
+  string title = 1;
+  string type = 2;
+  string composer = 3;
+  string arranger = 4;
+  repeated string footer = 5;
+  repeated string comments = 6;
+  repeated string in_line_text = 7;
+  uint32 tempo = 8;
+  repeated measure.Measure measures = 9;
+}

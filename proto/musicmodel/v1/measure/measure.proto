@@ -1,0 +1,18 @@
+syntax = "proto3";
+package musicmodel.v1.measure;
+option go_package = "measure";
+
+import "musicmodel/v1/barline/barline.proto";
+import "musicmodel/v1/measure/time_signature.proto";
+import "musicmodel/v1/measure/import_message.proto";
+import "musicmodel/v1/symbols/symbol.proto";
+
+message Measure {
+  barline.Barline left_barline = 1;
+  barline.Barline right_barline = 2;
+  measure.TimeSignature time = 3;
+  repeated symbols.Symbol symbols = 4;
+  repeated string comments = 5;
+  repeated string inline_text = 6;
+  repeated measure.ImportMessage import_messages = 7;
+}

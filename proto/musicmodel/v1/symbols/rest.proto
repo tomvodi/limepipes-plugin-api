@@ -1,0 +1,9 @@
+syntax = "proto3";
+package musicmodel.v1.symbols;
+option go_package = "symbols";
+
+import "musicmodel/v1/length/length.proto";
+
+message Rest {
+  length.Length length = 1;
+}

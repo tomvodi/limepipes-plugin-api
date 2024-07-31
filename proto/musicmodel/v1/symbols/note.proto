@@ -1,0 +1,22 @@
+syntax = "proto3";
+package musicmodel.v1.symbols;
+option go_package = "symbols";
+
+import "musicmodel/v1/pitch/pitch.proto";
+import "musicmodel/v1/length/length.proto";
+import "musicmodel/v1/symbols/accidental/accidental.proto";
+import "musicmodel/v1/symbols/tie/tie.proto";
+import "musicmodel/v1/symbols/embellishment/embellishment.proto";
+import "musicmodel/v1/symbols/movement/movement.proto";
+
+message Note {
+  pitch.Pitch pitch = 1;
+  length.Length length = 2;
+  uint32 dots = 3;
+  accidental.Accidental accidental = 4;
+  bool fermata = 5;
+  tie.Tie tie = 6;
+  embellishment.Embellishment embellishment = 7;
+  movement.Movement movement = 8;
+  string comment = 9;
+}

@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/barline";
+package musicmodel.v1.barline;
+option go_package = "barline";
 
 enum Type {
   Regular = 0;

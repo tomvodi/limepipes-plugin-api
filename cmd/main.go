@@ -2,15 +2,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/goccy/go-yaml"
 	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/length"
 	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/pitch"
 	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols"
-
-	"gopkg.in/yaml.v3"
 )
 
 func main() {
 	notePitch := pitch.Pitch_HighA
+
+	//test := yaml.InterfaceMarshaler()
+	//test2 := yaml.InterfaceUnmarshaler()
 
 	d, err := yaml.Marshal(&notePitch)
 	if err != nil {

@@ -2,19 +2,23 @@ package boundary
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Boundary) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Boundary) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Boundary) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Boundary_value[value.Value]
-	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+func (x *Boundary) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Boundary(val)
-	return nil
+	var err error
+	up, ok := Boundary_value[s]
+	if !ok {
+		return fmt.Errorf("boundary value %s is not a valid", s)
+	}
+	*x = Boundary(up)
+	return err
 }

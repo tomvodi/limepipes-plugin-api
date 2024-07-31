@@ -2,33 +2,42 @@ package measure
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Severity) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Severity) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Severity) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Severity_value[value.Value]
-	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+func (x *Severity) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Severity(val)
-	return nil
-}
-
-func (i Fix) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
-}
-
-func (i *Fix) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Fix_value[value.Value]
+	var err error
+	up, ok := Severity_value[s]
 	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+		return fmt.Errorf("severity value %s is not valid", s)
+	}
+	*x = Severity(up)
+	return err
+}
+
+func (x Fix) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
+}
+
+func (x *Fix) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Fix(val)
-	return nil
+	var err error
+	up, ok := Fix_value[s]
+	if !ok {
+		return fmt.Errorf("fix value %s is not valid", s)
+	}
+	*x = Fix(up)
+	return err
 }

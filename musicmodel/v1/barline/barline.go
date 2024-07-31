@@ -2,33 +2,42 @@ package barline
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Type) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Type) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Type) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Type_value[value.Value]
-	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Type(val)
-	return nil
-}
-
-func (i Time) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
-}
-
-func (i *Time) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Time_value[value.Value]
+	var err error
+	up, ok := Type_value[s]
 	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+		return fmt.Errorf("type value %s is not valid", s)
+	}
+	*x = Type(up)
+	return err
+}
+
+func (x Time) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
+}
+
+func (x *Time) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Time(val)
-	return nil
+	var err error
+	up, ok := Time_value[s]
+	if !ok {
+		return fmt.Errorf("time value %s is not valid", s)
+	}
+	*x = Time(up)
+	return err
 }

@@ -2,33 +2,42 @@ package movement
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Type) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Type) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Type) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Type_value[value.Value]
-	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Type(val)
-	return nil
-}
-
-func (i Variant) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
-}
-
-func (i *Variant) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Variant_value[value.Value]
+	var err error
+	up, ok := Type_value[s]
 	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+		return fmt.Errorf("type value %s is not valid", s)
+	}
+	*x = Type(up)
+	return err
+}
+
+func (x Variant) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
+}
+
+func (x *Variant) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Variant(val)
-	return nil
+	var err error
+	up, ok := Variant_value[s]
+	if !ok {
+		return fmt.Errorf("variant value %s is not valid", s)
+	}
+	*x = Variant(up)
+	return err
 }

@@ -2,19 +2,23 @@ package accidental
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Accidental) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Accidental) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Accidental) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Accidental_value[value.Value]
-	if !ok {
-		return fmt.Errorf("accidental %s is not a valid pitch", value.Value)
+func (x *Accidental) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Accidental(val)
-	return nil
+	var err error
+	up, ok := Accidental_value[s]
+	if !ok {
+		return fmt.Errorf("accidental value %s is not valid", s)
+	}
+	*x = Accidental(up)
+	return err
 }

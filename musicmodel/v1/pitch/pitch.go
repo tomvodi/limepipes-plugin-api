@@ -1,20 +1,22 @@
 package pitch
 
-import (
-	"fmt"
-	"gopkg.in/yaml.v3"
-)
+import "fmt"
 
-func (i Pitch) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Pitch) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Pitch) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Pitch_value[value.Value]
-	if !ok {
-		return fmt.Errorf("pitch %s is not a valid pitch", value.Value)
+func (x *Pitch) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Pitch(val)
-	return nil
+	var err error
+	up, ok := Pitch_value[s]
+	if !ok {
+		return fmt.Errorf("pitch value %s is not valid", s)
+	}
+	*x = Pitch(up)
+	return err
 }

@@ -2,19 +2,23 @@ package timeline
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 )
 
-func (i Type) MarshalYAML() (interface{}, error) {
-	return i.String(), nil
+func (x Type) MarshalYAML() (interface{}, error) {
+	return x.String(), nil
 }
 
-func (i *Type) UnmarshalYAML(value *yaml.Node) error {
-	val, ok := Type_value[value.Value]
-	if !ok {
-		return fmt.Errorf("%s is not a valid value", value.Value)
+func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var s string
+	if err := unmarshal(&s); err != nil {
+		return err
 	}
 
-	*i = Type(val)
-	return nil
+	var err error
+	up, ok := Type_value[s]
+	if !ok {
+		return fmt.Errorf("type value %s is not valid", s)
+	}
+	*x = Type(up)
+	return err
 }

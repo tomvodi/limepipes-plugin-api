@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	limepipes_music_model "github.com/tomvodi/limepipes-music-model/musicmodel"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/length"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/pitch"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/symbols"
+	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/length"
+	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/pitch"
+	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols"
 
 	"gopkg.in/yaml.v3"
 )
@@ -28,24 +27,20 @@ func main() {
 
 	fmt.Println("Unmarshaled Pitch:", notePitch)
 
-	rawNote := &symbols.Note{
+	note := &symbols.Note{
 		Pitch:  pitch.Pitch_D,
 		Length: length.Length_Sixteenth,
 		Dots:   1,
 	}
 
-	rawNoteD, err := yaml.Marshal(&rawNote)
+	rawNoteD, err := yaml.Marshal(&note)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("Marshaled raw note: \n%s\n", rawNoteD)
 
-	note := limepipes_music_model.Symbol_Note{
-		Note: rawNote,
-	}
-
-	sym := limepipes_music_model.Symbol{
-		Symbol: &note,
+	sym := symbols.Symbol{
+		Note: note,
 	}
 
 	symD, err := yaml.Marshal(&sym)
@@ -55,13 +50,11 @@ func main() {
 
 	fmt.Printf("Marshaled Symbol: \n%s\n", string(symD))
 
-	restSym := limepipes_music_model.Symbol_Rest{
-		Rest: &symbols.Rest{Length: length.Length_Eighth},
-	}
+	restSym := &symbols.Rest{Length: length.Length_Eighth}
 
-	sym2 := limepipes_music_model.Symbol{Symbol: &restSym}
+	sym2 := symbols.Symbol{Rest: restSym}
 
-	syms := []limepipes_music_model.Symbol{
+	syms := []symbols.Symbol{
 		sym,
 		sym2,
 	}
@@ -73,7 +66,7 @@ func main() {
 
 	fmt.Printf("Marshaled Symbols: \n%s\n", string(symsD))
 
-	outSym := limepipes_music_model.Symbol{}
+	outSym := symbols.Symbol{}
 	noteData := []byte(
 		`note:
     pitch: D

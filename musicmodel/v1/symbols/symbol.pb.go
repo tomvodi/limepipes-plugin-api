@@ -7,8 +7,8 @@
 package symbols
 
 import (
-	timeline "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/timeline"
-	tuplet "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/tuplet"
+	timeline "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/timeline"
+	tuplet "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/tuplet"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

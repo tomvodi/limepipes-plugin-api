@@ -7,7 +7,7 @@
 package symbols
 
 import (
-	length "github.com/tomvodi/limepipes-music-model/musicmodel/v1/length"
+	length "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

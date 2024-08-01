@@ -7,12 +7,12 @@
 package symbols
 
 import (
-	length "github.com/tomvodi/limepipes-music-model/musicmodel/v1/length"
-	pitch "github.com/tomvodi/limepipes-music-model/musicmodel/v1/pitch"
-	accidental "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/accidental"
-	embellishment "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/embellishment"
-	movement "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/movement"
-	tie "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/tie"
+	length "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
+	pitch "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/pitch"
+	accidental "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/accidental"
+	embellishment "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/embellishment"
+	movement "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/movement"
+	tie "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/tie"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

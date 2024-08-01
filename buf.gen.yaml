@@ -3,7 +3,7 @@ managed:
   enabled: true
   override:
     - file_option: go_package_prefix
-      value: github.com/tomvodi/limepipes-music-model
+      value: github.com/tomvodi/limepipes-plugin-api
 plugins:
   - remote: buf.build/protocolbuffers/go
     out: .

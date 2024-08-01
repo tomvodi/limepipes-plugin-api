@@ -7,7 +7,7 @@
 package timeline
 
 import (
-	boundary "github.com/tomvodi/limepipes-music-model/musicmodel/v1/boundary"
+	boundary "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/boundary"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

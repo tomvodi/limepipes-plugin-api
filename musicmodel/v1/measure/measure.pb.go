@@ -7,8 +7,8 @@
 package measure
 
 import (
-	barline "github.com/tomvodi/limepipes-music-model/musicmodel/v1/barline"
-	symbols "github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols"
+	barline "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/barline"
+	symbols "github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

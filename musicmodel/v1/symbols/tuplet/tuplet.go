@@ -1,7 +1,7 @@
 package tuplet
 
 import (
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/boundary"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/boundary"
 )
 
 type TupletType uint8

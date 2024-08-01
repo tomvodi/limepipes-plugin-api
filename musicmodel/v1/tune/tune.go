@@ -1,7 +1,7 @@
 package tune
 
 import (
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/measure"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/measure"
 )
 
 func (x *Tune) ImportMessages() []*measure.ImportMessage {

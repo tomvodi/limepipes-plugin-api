@@ -1,4 +1,4 @@
-module github.com/tomvodi/limepipes-music-model
+module github.com/tomvodi/limepipes-plugin-api
 
 go 1.22
 

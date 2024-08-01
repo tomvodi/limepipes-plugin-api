@@ -1,10 +1,10 @@
 package symbols
 
 import (
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/length"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/pitch"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/accidental"
-	"github.com/tomvodi/limepipes-music-model/musicmodel/v1/symbols/tie"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/pitch"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/accidental"
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/tie"
 )
 
 func (x *Note) IsValid() bool {

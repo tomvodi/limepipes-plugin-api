@@ -1,0 +1,9 @@
+syntax = "proto3";
+package musicmodel.v1.boundary;
+option go_package = "boundary";
+
+enum Boundary {
+  NoBoundary = 0;
+  Start = 1;
+  End = 2;
+}

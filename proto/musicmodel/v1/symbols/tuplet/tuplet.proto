@@ -1,0 +1,11 @@
+syntax = "proto3";
+package musicmodel.v1.symbols.tuplet;
+option go_package = "tuplet";
+
+import "musicmodel/v1/boundary/boundary.proto";
+
+message Tuplet {
+  boundary.Boundary boundary_type = 1;
+  uint32 visible_notes = 2;
+  uint32 played_notes = 3;
+}

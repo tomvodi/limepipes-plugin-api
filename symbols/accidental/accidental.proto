@@ -1,9 +1,0 @@
-syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/accidental";
-
-enum Accidental {
-  NoAccidental = 0;
-  Sharp = 1;
-  Flat = 2;
-  Natural = 3;
-}

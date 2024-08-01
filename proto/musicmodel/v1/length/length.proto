@@ -1,0 +1,13 @@
+syntax = "proto3";
+package musicmodel.v1.length;
+option go_package = "length";
+
+enum Length {
+  NoLength = 0;
+  Whole = 1;
+  Half = 2;
+  Quarter = 3;
+  Eighth = 4;
+  Sixteenth = 5;
+  Thirtysecond = 6;
+}

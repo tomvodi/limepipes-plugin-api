@@ -1,8 +1,0 @@
-syntax = "proto3";
-option go_package = "github.com/tomvodi/limepipes-music-model/musicmodel/symbols/tie";
-
-enum Tie {
-  NoTie = 0;
-  Start = 1;
-  End = 2;
-}

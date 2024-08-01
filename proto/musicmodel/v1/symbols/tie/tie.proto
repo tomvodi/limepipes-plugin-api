@@ -1,0 +1,9 @@
+syntax = "proto3";
+package musicmodel.v1.symbols.tie;
+option go_package = "tie";
+
+enum Tie {
+  NoTie = 0;
+  Start = 1;
+  End = 2;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+package musicmodel.v1.symbols.timeline;
+option go_package = "timeline";
+
+import "musicmodel/v1/boundary/boundary.proto";
+
+enum Type {
+  NoType = 0;
+  First = 1;
+  Singling = 2;
+  Second = 3;
+  Doubling = 4;
+  SecondOf2 = 5;
+  SecondOf3 = 6;
+  SecondOf4 = 7;
+  SecondOf2And4 = 8;
+  SecondOf5 = 9;
+  SecondOf6 = 10;
+  SecondOf7 = 11;
+  SecondOf8 = 12;
+  Bis = 13;
+  Intro = 14;
+}
+
+message TimeLine {
+  Type type = 1;
+  boundary.Boundary boundary_type = 2;
+}

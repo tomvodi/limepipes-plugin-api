@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/goccy/go-yaml"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/pitch"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols"

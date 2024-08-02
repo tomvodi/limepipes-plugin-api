@@ -1,0 +1,9 @@
+syntax = "proto3";
+package plugin.v1;
+option go_package = "plugin";
+
+import "plugin/v1/messages/info.proto";
+
+service PluginService {
+  rpc PluginInfo (v1.messages.PluginInfoRequest) returns (v1.messages.PluginInfoResponse) {}
+}

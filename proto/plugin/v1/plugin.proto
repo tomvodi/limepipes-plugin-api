@@ -3,7 +3,12 @@ package plugin.v1;
 option go_package = "plugin";
 
 import "plugin/v1/messages/info.proto";
+import "plugin/v1/messages/import.proto";
 
 service PluginService {
   rpc PluginInfo (v1.messages.PluginInfoRequest) returns (v1.messages.PluginInfoResponse) {}
+
+  // ImportFile imports a file into the plugin
+  // When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
+  rpc ImportFile (v1.messages.ImportFileRequest) returns (v1.messages.ImportFileResponse) {}
 }

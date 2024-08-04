@@ -17,5 +17,6 @@ message PluginInfoResponse {
   string name = 1; // Name of the plugin
   string description = 2; // Description of the plugin
   PluginType type = 3; // Type of the plugin (IN, OUT, INOUT)
-  repeated string file_types = 4; // Filetypes that the plugin can parse and/or write
+  // File extension names that the plugin can parse and/or write (e.g. ".bww", ".ly")
+  repeated string file_types = 4;
 }

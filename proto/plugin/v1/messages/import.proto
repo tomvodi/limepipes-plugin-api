@@ -1,0 +1,26 @@
+syntax = "proto3";
+package plugin.v1.messages;
+option go_package = "messages";
+
+import "musicmodel/v1/tune/tune.proto";
+
+message ImportedTune {
+  // The tune that was imported.
+  musicmodel.v1.tune.Tune tune = 1;
+
+  // The data with which the tune can be restored to a file.
+  // In multi tune file formats like bww, this data will represent a single tune.
+  // For single tune file formats like MusicXML, this data will always be empty.
+  bytes tune_file_data = 2;
+}
+
+message ImportFileRequest {
+  string file_path = 1;
+}
+
+message ImportFileResponse {
+  // The tunes that were imported.
+  // In multi tune file formats like bww, this will contain all the tunes in the file.
+  // For single tune file formats like MusicXML, this will contain a single tune.
+  repeated ImportedTune imported_tunes = 1;
+}

@@ -5,10 +5,10 @@ managed:
     - file_option: go_package_prefix
       value: github.com/tomvodi/limepipes-plugin-api
 plugins:
-  - remote: buf.build/protocolbuffers/go
+  - remote: buf.build/protocolbuffers/go:v1.34.2
     out: .
     opt: paths=source_relative
-  - remote: buf.build/connectrpc/go
+  - remote: buf.build/grpc/go:v1.5.1
     out: .
     opt: paths=source_relative
 inputs:

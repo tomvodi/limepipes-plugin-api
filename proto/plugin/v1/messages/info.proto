@@ -1,0 +1,22 @@
+syntax = "proto3";
+package plugin.v1.messages;
+option go_package = "messages";
+
+enum PluginType {
+  Unknown = 0;
+  IN = 1;
+  OUT = 2;
+  INOUT = 3;
+}
+
+message PluginInfoRequest {
+
+}
+
+message PluginInfoResponse {
+  string name = 1; // Name of the plugin
+  string description = 2; // Description of the plugin
+  PluginType type = 3; // Type of the plugin (IN, OUT, INOUT)
+  // File extension names that the plugin can parse and/or write (e.g. ".bww", ".ly")
+  repeated string file_types = 4;
+}

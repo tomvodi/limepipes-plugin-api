@@ -15,7 +15,10 @@ message ImportedTune {
 }
 
 message ImportFileRequest {
-  string file_path = 1;
+  oneof import_file {
+    string file_path = 1;  // Import a local file
+    bytes file_data = 2;  // Import a file from data
+  }
 }
 
 message ImportFileResponse {

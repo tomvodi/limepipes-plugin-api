@@ -53,7 +53,7 @@ func main() {
 	logger.Info("Received Plugin info: %v", info)
 
 	logger.Info("Importing file")
-	_, err = lpPlugin.ImportFile("test.bww")
+	_, err = lpPlugin.ImportLocalFile("test.bww")
 	if err != nil {
 		state, ok := status.FromError(err)
 		if ok {

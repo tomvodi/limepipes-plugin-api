@@ -29,6 +29,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PluginServiceClient interface {
 	PluginInfo(ctx context.Context, in *messages.PluginInfoRequest, opts ...grpc.CallOption) (*messages.PluginInfoResponse, error)
+	// ImportFile imports a file into the plugin
+	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
 	ImportFile(ctx context.Context, in *messages.ImportFileRequest, opts ...grpc.CallOption) (*messages.ImportFileResponse, error)
 }
 
@@ -65,6 +67,8 @@ func (c *pluginServiceClient) ImportFile(ctx context.Context, in *messages.Impor
 // for forward compatibility.
 type PluginServiceServer interface {
 	PluginInfo(context.Context, *messages.PluginInfoRequest) (*messages.PluginInfoResponse, error)
+	// ImportFile imports a file into the plugin
+	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
 	ImportFile(context.Context, *messages.ImportFileRequest) (*messages.ImportFileResponse, error)
 	mustEmbedUnimplementedPluginServiceServer()
 }

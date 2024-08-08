@@ -10,8 +10,12 @@ import (
 type impl struct {
 }
 
-func (i impl) ImportFile(filePath string) (*messages.ImportFileResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "ImportFile not implemented")
+func (i impl) ImportLocalFile(filePath string) (*messages.ImportFileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "ImportLocalFile not implemented")
+}
+
+func (i impl) Import([]byte) (*messages.ImportFileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "Import not implemented")
 }
 
 func (i impl) PluginInfo() (*messages.PluginInfoResponse, error) {

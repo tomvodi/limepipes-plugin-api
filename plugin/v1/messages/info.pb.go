@@ -118,7 +118,8 @@ type PluginInfoResponse struct {
 	Name        string     `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`                                     // Name of the plugin
 	Description string     `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`                       // Description of the plugin
 	Type        PluginType `protobuf:"varint,3,opt,name=type,proto3,enum=plugin.v1.messages.PluginType" json:"type,omitempty"` // Type of the plugin (IN, OUT, INOUT)
-	FileTypes   []string   `protobuf:"bytes,4,rep,name=file_types,json=fileTypes,proto3" json:"file_types,omitempty"`          // Filetypes that the plugin can parse and/or write (e.g. "bww", "ly")
+	// File extension names that the plugin can parse and/or write (e.g. ".bww", ".ly")
+	FileTypes []string `protobuf:"bytes,4,rep,name=file_types,json=fileTypes,proto3" json:"file_types,omitempty"`
 }
 
 func (x *PluginInfoResponse) Reset() {

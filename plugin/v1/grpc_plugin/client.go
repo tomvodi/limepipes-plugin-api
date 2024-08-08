@@ -11,10 +11,25 @@ type grpcClient struct {
 	impl pluginv1.PluginServiceClient
 }
 
-func (g *grpcClient) ImportFile(filePath string) (*messages.ImportFileResponse, error) {
+func (g *grpcClient) ImportLocalFile(filePath string) (*messages.ImportFileResponse, error) {
 	return g.impl.ImportFile(
 		context.Background(),
-		&messages.ImportFileRequest{FilePath: filePath},
+		&messages.ImportFileRequest{
+			ImportFile: &messages.ImportFileRequest_FilePath{
+				FilePath: filePath,
+			},
+		},
+	)
+}
+
+func (g *grpcClient) Import(fileData []byte) (*messages.ImportFileResponse, error) {
+	return g.impl.ImportFile(
+		context.Background(),
+		&messages.ImportFileRequest{
+			ImportFile: &messages.ImportFileRequest_FileData{
+				FileData: fileData,
+			},
+		},
 	)
 }
 

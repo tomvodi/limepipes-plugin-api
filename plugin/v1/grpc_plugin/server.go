@@ -2,6 +2,7 @@ package grpc_plugin
 
 import (
 	"context"
+	"fmt"
 	pluginv1 "github.com/tomvodi/limepipes-plugin-api/plugin/v1"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/interfaces"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
@@ -26,7 +27,14 @@ func (g *grpcServer) ImportFile(
 	_ context.Context,
 	req *messages.ImportFileRequest,
 ) (*messages.ImportFileResponse, error) {
-	return g.impl.ImportFile(req.FilePath)
+	switch impType := req.ImportFile.(type) {
+	case *messages.ImportFileRequest_FileData:
+		return g.impl.Import(impType.FileData)
+	case *messages.ImportFileRequest_FilePath:
+		return g.impl.ImportLocalFile(impType.FilePath)
+	default:
+		return nil, fmt.Errorf("unhandled import type %T", impType)
+	}
 }
 
 func NewGrpcServer(

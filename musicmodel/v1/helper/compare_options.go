@@ -10,9 +10,12 @@ import (
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/timeline"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/tuplet"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/tune"
+	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
 )
 
 var MusicModelCompareOptions = cmpopts.IgnoreUnexported(
+	messages.ImportFileResponse{},
+	messages.ImportedTune{},
 	tune.Tune{},
 	measure.Measure{},
 	measure.TimeSignature{},

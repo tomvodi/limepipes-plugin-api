@@ -7,3 +7,6 @@ build:
 
 lint:
 	buf lint
+
+mocks:
+	mockery

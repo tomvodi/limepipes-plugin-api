@@ -2,7 +2,7 @@ syntax = "proto3";
 package plugin.v1.messages;
 option go_package = "messages";
 
-import "plugin/v1/file_type/file_type.proto";
+import "plugin/v1/fileformat/fileformat.proto";
 
 enum PluginType {
   Unknown = 0;
@@ -21,9 +21,8 @@ message PluginInfoResponse {
   // Type of the plugin (IN, OUT, INOUT)
   PluginType type = 3;
 
-  // File type that the plugin can parse and/or write
-  // A file type can handle files with different file extensions e.g. BWW plugin can handle .bww and .bmw files
-  file_type.Type file_type = 4;
+  // The file format that the plugin can parse and/or write
+  fileformat.Format file_format = 4;
 
   // File extension names that the plugin can parse and/or write (e.g. ".bww", ".ly")
   repeated string file_extensions = 5;

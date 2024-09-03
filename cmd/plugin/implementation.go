@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/fileformat"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/interfaces"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
 	"google.golang.org/grpc/codes"
@@ -23,7 +24,7 @@ func (i impl) PluginInfo() (*messages.PluginInfoResponse, error) {
 		Name:        "Bagpipe Music Writer",
 		Description: "A plugin that opens Bagpipe Music Writer and Bagpipe Player files.",
 		Type:        messages.PluginType_IN,
-		FileTypes:   []string{"bww", "bmw"},
+		FileFormat:  fileformat.Format_BWW,
 	}, nil
 }
 

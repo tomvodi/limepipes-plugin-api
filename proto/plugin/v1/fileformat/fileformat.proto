@@ -1,0 +1,23 @@
+syntax = "proto3";
+package plugin.v1.fileformat;
+option go_package = "fileformat";
+
+// Format of the file.
+// This means the file format of the music data. Every file format may be stored
+// with different file extensions. E.g. Bagpipe Music Writer Gold files are stored
+// with the extension .bww or .bmw.
+enum Format {
+  Unknown = 0;
+
+  // The LimePipes music model data format
+  MUSIC_MODEL = 1;
+
+  // Bagpipe Music Writer Gold and Bagpipe Player format
+  BWW = 2;
+
+  // MusicXML format
+  MUSIC_XML = 3;
+
+  // ABC format
+  ABC = 4;
+}

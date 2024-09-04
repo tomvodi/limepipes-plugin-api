@@ -4,6 +4,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/common"
+	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/fileformat"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/grpc_plugin"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/interfaces"
 	"google.golang.org/grpc/status"
@@ -24,7 +25,7 @@ func main() {
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: common.HandshakeConfig,
 		Plugins: plugin.PluginSet{
-			"bww": grpc_plugin.NewGrpcPlugin(nil),
+			fileformat.Format_BWW.String(): grpc_plugin.NewGrpcPlugin(nil),
 		},
 		Cmd:              exec.Command("sh", "-c", "./go_build_plugin"),
 		AllowedProtocols: []plugin.Protocol{plugin.ProtocolGRPC},
@@ -39,7 +40,7 @@ func main() {
 	}
 
 	// Request the plugin
-	raw, err := rpcClient.Dispense("bww")
+	raw, err := rpcClient.Dispense(fileformat.Format_BWW.String())
 	if err != nil {
 		log.Fatal(err)
 	}

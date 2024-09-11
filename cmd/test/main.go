@@ -1,14 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"github.com/goccy/go-yaml"
+	"github.com/rs/zerolog/log"
+	"github.com/tomvodi/limepipes-plugin-api/internal/utils"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/pitch"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols"
 )
 
 func main() {
+	utils.SetupConsoleLogger()
+
 	notePitch := pitch.Pitch_HighA
 
 	//test := yaml.InterfaceMarshaler()
@@ -19,7 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Marshaled Pitch: %s\n", string(d))
+	log.Info().Msgf("Marshaled Pitch: %s\n", string(d))
 
 	pitchData := []byte("HighA")
 	err = yaml.Unmarshal(pitchData, &notePitch)
@@ -27,7 +30,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Unmarshaled Pitch:", notePitch)
+	log.Info().Msgf("Unmarshaled Pitch: %s", notePitch)
 
 	note := &symbols.Note{
 		Pitch:  pitch.Pitch_D,
@@ -39,9 +42,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Marshaled raw note: \n%s\n", rawNoteD)
+	log.Info().Msgf("Marshaled raw note: \n%s\n", rawNoteD)
 
-	sym := symbols.Symbol{
+	sym := &symbols.Symbol{
 		Note: note,
 	}
 
@@ -50,13 +53,13 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Marshaled Symbol: \n%s\n", string(symD))
+	log.Info().Msgf("Marshaled Symbol: \n%s\n", string(symD))
 
 	restSym := &symbols.Rest{Length: length.Length_Eighth}
 
-	sym2 := symbols.Symbol{Rest: restSym}
+	sym2 := &symbols.Symbol{Rest: restSym}
 
-	syms := []symbols.Symbol{
+	syms := []*symbols.Symbol{
 		sym,
 		sym2,
 	}
@@ -66,9 +69,9 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Marshaled Symbols: \n%s\n", string(symsD))
+	log.Info().Msgf("Marshaled Symbols: \n%s\n", string(symsD))
 
-	outSym := symbols.Symbol{}
+	outSym := &symbols.Symbol{}
 	noteData := []byte(
 		`note:
     pitch: D
@@ -79,5 +82,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Unmarshaled Symbol: \n%+v\n", outSym)
+	log.Info().Msgf("Unmarshaled Symbol: \n%+v\n", outSym)
 }

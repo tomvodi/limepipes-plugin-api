@@ -7,17 +7,17 @@ import (
 func (x *Tune) ImportMessages() []*measure.ImportMessage {
 	var messages []*measure.ImportMessage
 
-	for _, measure := range x.Measures {
-		messages = append(messages, measure.ImportMessages...)
+	for _, m := range x.Measures {
+		messages = append(messages, m.ImportMessages...)
 	}
 
 	return messages
 }
 
 func (x *Tune) FirstTimeSignature() *measure.TimeSignature {
-	for _, measure := range x.Measures {
-		if measure.Time != nil {
-			return measure.Time
+	for _, m := range x.Measures {
+		if m.Time != nil {
+			return m.Time
 		}
 	}
 

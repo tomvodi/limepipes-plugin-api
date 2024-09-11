@@ -6,7 +6,7 @@ build:
 	buf generate
 
 lint:
-	buf lint
+	buf lint && golangci-lint run
 
 mocks:
 	mockery

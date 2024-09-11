@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func (x Tie) MarshalYAML() (interface{}, error) {
+func (x Tie) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Tie) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Tie) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err

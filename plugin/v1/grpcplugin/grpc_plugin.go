@@ -1,4 +1,4 @@
-package grpc_plugin
+package grpcplugin
 
 import (
 	"context"
@@ -8,32 +8,36 @@ import (
 	"google.golang.org/grpc"
 )
 
-type grpcPlugin struct {
+type GrpcPlugin struct {
 	plugin.Plugin
 	impl interfaces.LimePipesPlugin
 }
 
-func (g *grpcPlugin) GRPCServer(
+func (g *GrpcPlugin) GRPCServer(
 	_ *plugin.GRPCBroker,
 	server *grpc.Server,
 ) error {
-	pluginv1.RegisterPluginServiceServer(server, NewGrpcServer(g.impl))
+	var s pluginv1.PluginServiceServer = NewGrpcServer(g.impl)
+	pluginv1.RegisterPluginServiceServer(server, s)
 	return nil
 }
 
-func (g *grpcPlugin) GRPCClient(
+func (g *GrpcPlugin) GRPCClient(
 	_ context.Context,
 	_ *plugin.GRPCBroker,
 	conn *grpc.ClientConn,
-) (interface{}, error) {
+) (any, error) {
 	client := pluginv1.NewPluginServiceClient(conn)
-	return NewGrpcClient(client), nil
+
+	var c interfaces.LimePipesPlugin = NewGrpcClient(client)
+
+	return c, nil
 }
 
 func NewGrpcPlugin(
 	impl interfaces.LimePipesPlugin,
-) plugin.Plugin {
-	return &grpcPlugin{
+) *GrpcPlugin {
+	return &GrpcPlugin{
 		impl: impl,
 	}
 }

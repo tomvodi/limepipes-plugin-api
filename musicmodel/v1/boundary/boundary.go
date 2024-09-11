@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func (x Boundary) MarshalYAML() (interface{}, error) {
+func (x Boundary) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Boundary) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Boundary) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err

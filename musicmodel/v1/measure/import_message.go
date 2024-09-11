@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func (x Severity) MarshalYAML() (interface{}, error) {
+func (x Severity) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Severity) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Severity) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
@@ -23,11 +23,11 @@ func (x *Severity) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return err
 }
 
-func (x Fix) MarshalYAML() (interface{}, error) {
+func (x Fix) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Fix) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Fix) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err

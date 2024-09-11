@@ -2,11 +2,11 @@ package pitch
 
 import "fmt"
 
-func (x Pitch) MarshalYAML() (interface{}, error) {
+func (x Pitch) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Pitch) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Pitch) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err

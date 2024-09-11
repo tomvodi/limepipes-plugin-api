@@ -1,4 +1,4 @@
-package grpc_plugin
+package grpcplugin
 
 import (
 	"context"
@@ -8,30 +8,31 @@ import (
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
 )
 
-type grpcServer struct {
+type Server struct {
 	pluginv1.UnimplementedPluginServiceServer
 	impl interfaces.LimePipesPlugin
 }
 
-func (g *grpcServer) mustEmbedUnimplementedPluginServiceServer() {
+//nolint:unused
+func (s *Server) mustEmbedUnimplementedPluginServiceServer() {
 }
 
-func (g *grpcServer) PluginInfo(
+func (s *Server) PluginInfo(
 	context.Context,
 	*messages.PluginInfoRequest,
 ) (*messages.PluginInfoResponse, error) {
-	return g.impl.PluginInfo()
+	return s.impl.PluginInfo()
 }
 
-func (g *grpcServer) ImportFile(
+func (s *Server) ImportFile(
 	_ context.Context,
 	req *messages.ImportFileRequest,
 ) (*messages.ImportFileResponse, error) {
 	switch impType := req.ImportFile.(type) {
 	case *messages.ImportFileRequest_FileData:
-		return g.impl.Import(impType.FileData)
+		return s.impl.Import(impType.FileData)
 	case *messages.ImportFileRequest_FilePath:
-		return g.impl.ImportLocalFile(impType.FilePath)
+		return s.impl.ImportLocalFile(impType.FilePath)
 	default:
 		return nil, fmt.Errorf("unhandled import type %T", impType)
 	}
@@ -39,8 +40,8 @@ func (g *grpcServer) ImportFile(
 
 func NewGrpcServer(
 	impl interfaces.LimePipesPlugin,
-) pluginv1.PluginServiceServer {
-	return &grpcServer{
+) *Server {
+	return &Server{
 		impl: impl,
 	}
 }

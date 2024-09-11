@@ -1,8 +1,9 @@
 syntax = "proto3";
 package plugin.v1.messages;
-option go_package = "messages";
 
 import "plugin/v1/fileformat/fileformat.proto";
+
+option go_package = "messages";
 
 enum PluginType {
   Unknown = 0;
@@ -11,8 +12,7 @@ enum PluginType {
   INOUT = 3;
 }
 
-message PluginInfoRequest {
-}
+message PluginInfoRequest {}
 
 message PluginInfoResponse {
   string name = 1; // Name of the plugin

@@ -1,8 +1,9 @@
 syntax = "proto3";
 package musicmodel.v1.symbols.movement;
-option go_package = "movement";
 
 import "musicmodel/v1/pitch/pitch.proto";
+
+option go_package = "movement";
 
 enum Type {
   NoMovement = 0;

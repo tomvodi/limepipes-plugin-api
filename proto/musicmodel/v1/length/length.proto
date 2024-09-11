@@ -1,5 +1,6 @@
 syntax = "proto3";
 package musicmodel.v1.length;
+
 option go_package = "length";
 
 enum Length {

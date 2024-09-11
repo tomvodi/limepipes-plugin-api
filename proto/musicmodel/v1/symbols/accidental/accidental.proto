@@ -1,5 +1,6 @@
 syntax = "proto3";
 package musicmodel.v1.symbols.accidental;
+
 option go_package = "accidental";
 
 enum Accidental {

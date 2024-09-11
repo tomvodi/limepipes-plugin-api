@@ -1,11 +1,12 @@
 syntax = "proto3";
 package musicmodel.v1.measure;
-option go_package = "measure";
 
 import "musicmodel/v1/barline/barline.proto";
-import "musicmodel/v1/measure/time_signature.proto";
 import "musicmodel/v1/measure/import_message.proto";
+import "musicmodel/v1/measure/time_signature.proto";
 import "musicmodel/v1/symbols/symbol.proto";
+
+option go_package = "measure";
 
 message Measure {
   barline.Barline left_barline = 1;

@@ -1,16 +1,17 @@
 syntax = "proto3";
 package musicmodel.v1.symbols;
-option go_package = "symbols";
 
 import "musicmodel/v1/symbols/note.proto";
 import "musicmodel/v1/symbols/rest.proto";
-import "musicmodel/v1/symbols/tuplet/tuplet.proto";
 import "musicmodel/v1/symbols/timeline/timeline.proto";
+import "musicmodel/v1/symbols/tuplet/tuplet.proto";
+
+option go_package = "symbols";
 
 /* A Symbol represents a musical symbol.
-  * It can be a Note or a Rest.
-  * Symbol doesn't use the oneof pattern because it is not makes the resulting structs
-  * in Go too nested.
+ * It can be a Note or a Rest.
+ * Symbol doesn't use the oneof pattern because it is not makes the resulting structs
+ * in Go too nested.
  */
 message Symbol {
   optional symbols.Note note = 1;

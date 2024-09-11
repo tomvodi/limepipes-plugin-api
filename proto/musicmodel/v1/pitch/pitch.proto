@@ -1,5 +1,6 @@
 syntax = "proto3";
 package musicmodel.v1.pitch;
+
 option go_package = "pitch";
 
 enum Pitch {

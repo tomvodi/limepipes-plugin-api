@@ -1,5 +1,6 @@
 syntax = "proto3";
 package musicmodel.v1.barline;
+
 option go_package = "barline";
 
 enum Type {
@@ -16,7 +17,7 @@ enum Time {
   Dalsegno = 2;
   Fine = 3;
   DacapoAlFine = 4;
-  Repeat = 5;// a normal |: ... :| repeat lines
+  Repeat = 5; // a normal |: ... :| repeat lines
 }
 
 message Barline {

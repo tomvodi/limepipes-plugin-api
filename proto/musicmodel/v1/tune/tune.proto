@@ -1,8 +1,9 @@
 syntax = "proto3";
 package musicmodel.v1.tune;
-option go_package = "tune";
 
 import "musicmodel/v1/measure/measure.proto";
+
+option go_package = "tune";
 
 message Tune {
   string title = 1;

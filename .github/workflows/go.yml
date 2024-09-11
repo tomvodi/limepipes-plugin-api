@@ -12,7 +12,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  linting:
+  go-linting:
     name: Linting with golangci-lint
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +24,18 @@ jobs:
         uses: golangci/golangci-lint-action@v6
         with:
           version: v1.60
+
+  protobuf-linting:
+    name: Linting with buf
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
+        with:
+          version: 1.35.1
+          format: true
+          lint: true
+          breaking: true
 
 #  test-and-coverage:
 #    name: Go test and coverage check

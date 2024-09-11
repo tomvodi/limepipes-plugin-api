@@ -1,6 +1,7 @@
 package symbols
 
 import (
+	. "github.com/onsi/gomega"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/length"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/pitch"
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/accidental"
@@ -88,4 +89,37 @@ func TestNote_IsIncomplete(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestNote_HasPitchAndLength(t *testing.T) {
+	g := NewGomegaWithT(t)
+	n := &Note{}
+	g.Expect(n.HasPitchAndLength()).To(BeFalse())
+	n.Pitch = pitch.Pitch_D
+	g.Expect(n.HasPitchAndLength()).To(BeFalse())
+	n.Length = length.Length_Sixteenth
+	g.Expect(n.HasPitchAndLength()).To(BeTrue())
+}
+
+func TestNote_HasPitchOrLength(t *testing.T) {
+	g := NewGomegaWithT(t)
+	n := &Note{}
+	g.Expect(n.HasPitchOrLength()).To(BeFalse())
+	n.Pitch = pitch.Pitch_D
+	g.Expect(n.HasPitchOrLength()).To(BeTrue())
+	n.Pitch = pitch.Pitch_NoPitch
+	n.Length = length.Length_Sixteenth
+	g.Expect(n.HasPitchOrLength()).To(BeTrue())
+}
+
+func TestNote_IsOnlyAccidental(t *testing.T) {
+	g := NewGomegaWithT(t)
+	n := &Note{}
+	g.Expect(n.IsOnlyAccidental()).To(BeFalse())
+
+	n.Accidental = accidental.Accidental_Sharp
+	g.Expect(n.IsOnlyAccidental()).To(BeTrue())
+
+	n.Pitch = pitch.Pitch_D
+	g.Expect(n.IsOnlyAccidental()).To(BeFalse())
 }

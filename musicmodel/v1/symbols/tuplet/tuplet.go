@@ -50,6 +50,6 @@ func notesConfigFromType(ttype Type) (uint32, uint32) {
 	case Type76:
 		return 7, 6
 	default:
-		return 0, 0
+		panic("tuplet type missed in notesConfigFromType")
 	}
 }

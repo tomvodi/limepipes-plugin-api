@@ -1,14 +1,14 @@
-package barline
+package movement
 
 import (
 	"fmt"
 )
 
-func (x Type) MarshalYAML() (interface{}, error) {
+func (x Type) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Type) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
@@ -23,21 +23,21 @@ func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return err
 }
 
-func (x Time) MarshalYAML() (interface{}, error) {
+func (x Variant) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Time) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Variant) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
 	}
 
 	var err error
-	up, ok := Time_value[s]
+	up, ok := Variant_value[s]
 	if !ok {
-		return fmt.Errorf("time value %s is not valid", s)
+		return fmt.Errorf("variant value %s is not valid", s)
 	}
-	*x = Time(up)
+	*x = Variant(up)
 	return err
 }

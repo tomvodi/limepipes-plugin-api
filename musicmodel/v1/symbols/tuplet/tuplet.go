@@ -4,10 +4,10 @@ import (
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/boundary"
 )
 
-type TupletType uint8
+type Type uint8
 
 const (
-	NoType TupletType = iota
+	NoType Type = iota
 	Type23
 	Type32
 	Type43
@@ -19,7 +19,7 @@ const (
 	Type76
 )
 
-func NewTuplet(bound boundary.Boundary, ttype TupletType) *Tuplet {
+func NewTuplet(bound boundary.Boundary, ttype Type) *Tuplet {
 	tp := &Tuplet{
 		BoundaryType: bound,
 	}
@@ -29,7 +29,7 @@ func NewTuplet(bound boundary.Boundary, ttype TupletType) *Tuplet {
 }
 
 // notesConfigFromType returns the visible notes and played notes for a given type
-func notesConfigFromType(ttype TupletType) (uint32, uint32) {
+func notesConfigFromType(ttype Type) (uint32, uint32) {
 	switch ttype {
 	case Type23:
 		return 2, 3
@@ -50,6 +50,6 @@ func notesConfigFromType(ttype TupletType) (uint32, uint32) {
 	case Type76:
 		return 7, 6
 	default:
-		return 0, 0
+		panic("tuplet type missed in notesConfigFromType")
 	}
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/hashicorp/go-plugin"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/common"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/fileformat"
-	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/grpc_plugin"
+	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/grpcplugin"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/interfaces"
 	"google.golang.org/grpc/status"
 	"log"
@@ -25,7 +25,7 @@ func main() {
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: common.HandshakeConfig,
 		Plugins: plugin.PluginSet{
-			fileformat.Format_BWW.String(): grpc_plugin.NewGrpcPlugin(nil),
+			fileformat.Format_BWW.String(): grpcplugin.NewGrpcPlugin(nil),
 		},
 		Cmd:              exec.Command("sh", "-c", "./go_build_plugin"),
 		AllowedProtocols: []plugin.Protocol{plugin.ProtocolGRPC},
@@ -60,8 +60,7 @@ func main() {
 		if ok {
 			logger.Error("Error importing file: %v", state.Message())
 			return
-		} else {
-			logger.Error("Generic error importing file: %v", err)
 		}
+		logger.Error("Generic error importing file: %v", err)
 	}
 }

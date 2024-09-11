@@ -2,9 +2,10 @@ package main
 
 import (
 	"github.com/hashicorp/go-plugin"
+	"github.com/tomvodi/limepipes-plugin-api/internal/utils"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/common"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/fileformat"
-	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/grpc_plugin"
+	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/grpcplugin"
 	"google.golang.org/grpc"
 )
 
@@ -15,10 +16,12 @@ func defaultGRPCServer(opts []grpc.ServerOption) *grpc.Server {
 }
 
 func main() {
+	utils.SetupConsoleLogger()
+
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig: common.HandshakeConfig,
 		Plugins: map[string]plugin.Plugin{
-			fileformat.Format_BWW.String(): grpc_plugin.NewGrpcPlugin(NewImplementation()),
+			fileformat.Format_BWW.String(): grpcplugin.NewGrpcPlugin(NewImplementation()),
 		},
 
 		GRPCServer: defaultGRPCServer,

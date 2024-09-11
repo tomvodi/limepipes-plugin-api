@@ -1,8 +1,9 @@
 syntax = "proto3";
 package plugin.v1.messages;
-option go_package = "messages";
 
 import "musicmodel/v1/tune/tune.proto";
+
+option go_package = "messages";
 
 message ImportedTune {
   // The tune that was imported.
@@ -16,8 +17,8 @@ message ImportedTune {
 
 message ImportFileRequest {
   oneof import_file {
-    string file_path = 1;  // Import a local file
-    bytes file_data = 2;  // Import a file from data
+    string file_path = 1; // Import a local file
+    bytes file_data = 2; // Import a file from data
   }
 }
 

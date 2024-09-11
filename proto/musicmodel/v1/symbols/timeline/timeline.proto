@@ -1,8 +1,9 @@
 syntax = "proto3";
 package musicmodel.v1.symbols.timeline;
-option go_package = "timeline";
 
 import "musicmodel/v1/boundary/boundary.proto";
+
+option go_package = "timeline";
 
 enum Type {
   NoType = 0;

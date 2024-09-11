@@ -1,5 +1,6 @@
 syntax = "proto3";
 package musicmodel.v1.boundary;
+
 option go_package = "boundary";
 
 enum Boundary {

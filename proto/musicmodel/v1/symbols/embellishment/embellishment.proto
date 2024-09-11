@@ -1,8 +1,9 @@
 syntax = "proto3";
 package musicmodel.v1.symbols.embellishment;
-option go_package = "embellishment";
 
 import "musicmodel/v1/pitch/pitch.proto";
+
+option go_package = "embellishment";
 
 enum Type {
   NoEmbellishment = 0;

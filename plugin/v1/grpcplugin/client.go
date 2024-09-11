@@ -1,18 +1,17 @@
-package grpc_plugin
+package grpcplugin
 
 import (
 	"context"
 	pluginv1 "github.com/tomvodi/limepipes-plugin-api/plugin/v1"
-	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/interfaces"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
 )
 
-type grpcClient struct {
+type Client struct {
 	impl pluginv1.PluginServiceClient
 }
 
-func (g *grpcClient) ImportLocalFile(filePath string) (*messages.ImportFileResponse, error) {
-	return g.impl.ImportFile(
+func (c *Client) ImportLocalFile(filePath string) (*messages.ImportFileResponse, error) {
+	return c.impl.ImportFile(
 		context.Background(),
 		&messages.ImportFileRequest{
 			ImportFile: &messages.ImportFileRequest_FilePath{
@@ -22,8 +21,8 @@ func (g *grpcClient) ImportLocalFile(filePath string) (*messages.ImportFileRespo
 	)
 }
 
-func (g *grpcClient) Import(fileData []byte) (*messages.ImportFileResponse, error) {
-	return g.impl.ImportFile(
+func (c *Client) Import(fileData []byte) (*messages.ImportFileResponse, error) {
+	return c.impl.ImportFile(
 		context.Background(),
 		&messages.ImportFileRequest{
 			ImportFile: &messages.ImportFileRequest_FileData{
@@ -33,11 +32,11 @@ func (g *grpcClient) Import(fileData []byte) (*messages.ImportFileResponse, erro
 	)
 }
 
-func (g *grpcClient) PluginInfo() (
+func (c *Client) PluginInfo() (
 	*messages.PluginInfoResponse,
 	error,
 ) {
-	return g.impl.PluginInfo(
+	return c.impl.PluginInfo(
 		context.Background(),
 		&messages.PluginInfoRequest{},
 	)
@@ -45,8 +44,8 @@ func (g *grpcClient) PluginInfo() (
 
 func NewGrpcClient(
 	impl pluginv1.PluginServiceClient,
-) interfaces.LimePipesPlugin {
-	return &grpcClient{
+) *Client {
+	return &Client{
 		impl: impl,
 	}
 }

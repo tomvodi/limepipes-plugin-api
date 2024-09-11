@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func (x Type) MarshalYAML() (interface{}, error) {
+func (x Type) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Type) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
@@ -23,11 +23,11 @@ func (x *Type) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return err
 }
 
-func (x Variant) MarshalYAML() (interface{}, error) {
+func (x Variant) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Variant) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Variant) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err
@@ -41,11 +41,11 @@ func (x *Variant) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	*x = Variant(up)
 	return err
 }
-func (x Weight) MarshalYAML() (interface{}, error) {
+func (x Weight) MarshalYAML() (any, error) {
 	return x.String(), nil
 }
 
-func (x *Weight) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (x *Weight) UnmarshalYAML(unmarshal func(any) error) error {
 	var s string
 	if err := unmarshal(&s); err != nil {
 		return err

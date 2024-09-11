@@ -1,13 +1,14 @@
 syntax = "proto3";
 package musicmodel.v1.symbols;
-option go_package = "symbols";
 
-import "musicmodel/v1/pitch/pitch.proto";
 import "musicmodel/v1/length/length.proto";
+import "musicmodel/v1/pitch/pitch.proto";
 import "musicmodel/v1/symbols/accidental/accidental.proto";
-import "musicmodel/v1/symbols/tie/tie.proto";
 import "musicmodel/v1/symbols/embellishment/embellishment.proto";
 import "musicmodel/v1/symbols/movement/movement.proto";
+import "musicmodel/v1/symbols/tie/tie.proto";
+
+option go_package = "symbols";
 
 message Note {
   pitch.Pitch pitch = 1;

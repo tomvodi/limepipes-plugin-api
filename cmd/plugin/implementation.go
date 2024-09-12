@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/tune"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/fileformat"
 	"github.com/tomvodi/limepipes-plugin-api/plugin/v1/messages"
 	"google.golang.org/grpc/codes"
@@ -8,6 +9,16 @@ import (
 )
 
 type Impl struct {
+}
+
+func (i *Impl) ExportToLocalFile([]*tune.Tune, string) error {
+	return status.Error(codes.Unimplemented, "ExportToLocalFile not implemented")
+}
+
+func (i *Impl) Export(
+	[]*tune.Tune,
+) ([]byte, error) {
+	return nil, status.Error(codes.Unimplemented, "Export not implemented")
 }
 
 func (i *Impl) ImportLocalFile(string) (*messages.ImportFileResponse, error) {

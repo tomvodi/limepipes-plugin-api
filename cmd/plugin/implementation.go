@@ -11,21 +11,21 @@ import (
 type Impl struct {
 }
 
-func (i *Impl) ExportToLocalFile([]*tune.Tune, string) error {
+func (i *Impl) ExportToFile(_ []*tune.Tune, _ string) error {
 	return status.Error(codes.Unimplemented, "ExportToLocalFile not implemented")
 }
 
 func (i *Impl) Export(
-	[]*tune.Tune,
+	_ []*tune.Tune,
 ) ([]byte, error) {
 	return nil, status.Error(codes.Unimplemented, "Export not implemented")
 }
 
-func (i *Impl) ImportLocalFile(string) (*messages.ImportFileResponse, error) {
+func (i *Impl) ParseFromFile(_ string) ([]*messages.ParsedTune, error) {
 	return nil, status.Error(codes.Unimplemented, "ImportLocalFile not implemented")
 }
 
-func (i *Impl) Import([]byte) (*messages.ImportFileResponse, error) {
+func (i *Impl) Parse(_ []byte) ([]*messages.ParsedTune, error) {
 	return nil, status.Error(codes.Unimplemented, "Import not implemented")
 }
 

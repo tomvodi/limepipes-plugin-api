@@ -14,28 +14,49 @@ type Server struct {
 }
 
 //nolint:unused
-func (s *Server) mustEmbedUnimplementedPluginServiceServer() {
-}
+func (s *Server) mustEmbedUnimplementedPluginServiceServer() {}
 
 func (s *Server) PluginInfo(
-	context.Context,
-	*messages.PluginInfoRequest,
+	_ context.Context,
+	_ *messages.PluginInfoRequest,
 ) (*messages.PluginInfoResponse, error) {
 	return s.impl.PluginInfo()
 }
 
-func (s *Server) ImportFile(
+func (s *Server) ParseFromFile(
 	_ context.Context,
-	req *messages.ImportFileRequest,
-) (*messages.ImportFileResponse, error) {
-	switch impType := req.ImportFile.(type) {
-	case *messages.ImportFileRequest_FileData:
-		return s.impl.Import(impType.FileData)
-	case *messages.ImportFileRequest_FilePath:
-		return s.impl.ImportLocalFile(impType.FilePath)
-	default:
-		return nil, fmt.Errorf("unhandled import type %T", impType)
+	req *messages.ParseFromFileRequest,
+) (*messages.ParseFromFileResponse, error) {
+	if req.FilePath == "" {
+		return nil, fmt.Errorf("parse from file needs a non empty file path")
 	}
+
+	tunes, err := s.impl.ParseFromFile(req.FilePath)
+	if err != nil {
+		return nil, err
+	}
+
+	return &messages.ParseFromFileResponse{
+		Tunes: tunes,
+	}, nil
+}
+
+func (s *Server) Parse(
+	_ context.Context,
+	req *messages.ParseRequest,
+) (*messages.ParseResponse, error) {
+	if len(req.Data) == 0 {
+		return nil, fmt.Errorf("parse needs non empty data")
+	}
+
+	tunes, err := s.impl.Parse(req.Data)
+	if err != nil {
+		return nil, err
+	}
+
+	return &messages.ParseResponse{
+		Tunes: tunes,
+	}, nil
 }
 
 func (s *Server) Export(
@@ -58,7 +79,7 @@ func (s *Server) ExportToFile(
 	}
 
 	return &messages.ExportToFileResponse{},
-		s.impl.ExportToLocalFile(req.ExportTunes, req.FilePath)
+		s.impl.ExportToFile(req.ExportTunes, req.FilePath)
 }
 
 func NewGrpcServer(

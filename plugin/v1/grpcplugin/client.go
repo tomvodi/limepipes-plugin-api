@@ -11,7 +11,7 @@ type Client struct {
 	impl pluginv1.PluginServiceClient
 }
 
-func (c *Client) ExportToLocalFile(
+func (c *Client) ExportToFile(
 	tunes []*tune.Tune,
 	filepath string,
 ) error {
@@ -41,28 +41,38 @@ func (c *Client) Export(
 	return resp.GetData(), err
 }
 
-func (c *Client) ImportLocalFile(
+func (c *Client) ParseFromFile(
 	filePath string,
-) (*messages.ImportFileResponse, error) {
-	return c.impl.ImportFile(
+) ([]*messages.ParsedTune, error) {
+	resp, err := c.impl.ParseFromFile(
 		context.Background(),
-		&messages.ImportFileRequest{
-			ImportFile: &messages.ImportFileRequest_FilePath{
-				FilePath: filePath,
-			},
+		&messages.ParseFromFileRequest{
+			FilePath: filePath,
 		},
 	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resp.Tunes, nil
 }
 
-func (c *Client) Import(fileData []byte) (*messages.ImportFileResponse, error) {
-	return c.impl.ImportFile(
+func (c *Client) Parse(
+	data []byte,
+) ([]*messages.ParsedTune, error) {
+	resp, err := c.impl.Parse(
 		context.Background(),
-		&messages.ImportFileRequest{
-			ImportFile: &messages.ImportFileRequest_FileData{
-				FileData: fileData,
-			},
+		&messages.ParseRequest{
+			Data: data,
 		},
 	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resp.Tunes, nil
 }
 
 func (c *Client) PluginInfo() (

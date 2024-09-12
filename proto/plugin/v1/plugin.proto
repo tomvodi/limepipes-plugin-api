@@ -2,18 +2,22 @@ syntax = "proto3";
 package plugin.v1;
 
 import "plugin/v1/messages/export.proto";
-import "plugin/v1/messages/import.proto";
 import "plugin/v1/messages/info.proto";
+import "plugin/v1/messages/parse.proto";
 
 option go_package = "plugin";
 
 service PluginService {
   rpc PluginInfo(v1.messages.PluginInfoRequest) returns (v1.messages.PluginInfoResponse) {}
 
-  // ImportFile imports a file into the plugin
-  // When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
-  rpc ImportFile(v1.messages.ImportFileRequest) returns (v1.messages.ImportFileResponse) {}
+  // ParseFromFile parses a local file and returns the tunes in the file.
+  // When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error.
+  rpc ParseFromFile(v1.messages.ParseFromFileRequest) returns (v1.messages.ParseFromFileResponse) {}
+  // Parse parses the data and returns the tunes from it.
+  rpc Parse(v1.messages.ParseRequest) returns (v1.messages.ParseResponse) {}
 
+  // Export exports the tunes to data that can be restored to a file.
   rpc Export(v1.messages.ExportRequest) returns (v1.messages.ExportResponse) {}
+  // ExportToFile exports the tunes to a local file.
   rpc ExportToFile(v1.messages.ExportToFileRequest) returns (v1.messages.ExportToFileResponse) {}
 }

@@ -7,8 +7,8 @@ linters:
     - ireturn
 
 issues:
-  exclude-dirs:
-    - apigen
+  exclude-files:
+    - ".*\\.pb\\.go$"
   exclude-rules:
     - linters:
         - revive

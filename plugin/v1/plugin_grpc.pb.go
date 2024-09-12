@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PluginService_PluginInfo_FullMethodName   = "/plugin.v1.PluginService/PluginInfo"
-	PluginService_ImportFile_FullMethodName   = "/plugin.v1.PluginService/ImportFile"
-	PluginService_Export_FullMethodName       = "/plugin.v1.PluginService/Export"
-	PluginService_ExportToFile_FullMethodName = "/plugin.v1.PluginService/ExportToFile"
+	PluginService_PluginInfo_FullMethodName    = "/plugin.v1.PluginService/PluginInfo"
+	PluginService_ParseFromFile_FullMethodName = "/plugin.v1.PluginService/ParseFromFile"
+	PluginService_Parse_FullMethodName         = "/plugin.v1.PluginService/Parse"
+	PluginService_Export_FullMethodName        = "/plugin.v1.PluginService/Export"
+	PluginService_ExportToFile_FullMethodName  = "/plugin.v1.PluginService/ExportToFile"
 )
 
 // PluginServiceClient is the client API for PluginService service.
@@ -31,10 +32,14 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PluginServiceClient interface {
 	PluginInfo(ctx context.Context, in *messages.PluginInfoRequest, opts ...grpc.CallOption) (*messages.PluginInfoResponse, error)
-	// ImportFile imports a file into the plugin
-	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
-	ImportFile(ctx context.Context, in *messages.ImportFileRequest, opts ...grpc.CallOption) (*messages.ImportFileResponse, error)
+	// ParseFromFile parses a local file and returns the tunes in the file.
+	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error.
+	ParseFromFile(ctx context.Context, in *messages.ParseFromFileRequest, opts ...grpc.CallOption) (*messages.ParseFromFileResponse, error)
+	// Parse parses the data and returns the tunes from it.
+	Parse(ctx context.Context, in *messages.ParseRequest, opts ...grpc.CallOption) (*messages.ParseResponse, error)
+	// Export exports the tunes to data that can be restored to a file.
 	Export(ctx context.Context, in *messages.ExportRequest, opts ...grpc.CallOption) (*messages.ExportResponse, error)
+	// ExportToFile exports the tunes to a local file.
 	ExportToFile(ctx context.Context, in *messages.ExportToFileRequest, opts ...grpc.CallOption) (*messages.ExportToFileResponse, error)
 }
 
@@ -56,10 +61,20 @@ func (c *pluginServiceClient) PluginInfo(ctx context.Context, in *messages.Plugi
 	return out, nil
 }
 
-func (c *pluginServiceClient) ImportFile(ctx context.Context, in *messages.ImportFileRequest, opts ...grpc.CallOption) (*messages.ImportFileResponse, error) {
+func (c *pluginServiceClient) ParseFromFile(ctx context.Context, in *messages.ParseFromFileRequest, opts ...grpc.CallOption) (*messages.ParseFromFileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(messages.ImportFileResponse)
-	err := c.cc.Invoke(ctx, PluginService_ImportFile_FullMethodName, in, out, cOpts...)
+	out := new(messages.ParseFromFileResponse)
+	err := c.cc.Invoke(ctx, PluginService_ParseFromFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pluginServiceClient) Parse(ctx context.Context, in *messages.ParseRequest, opts ...grpc.CallOption) (*messages.ParseResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(messages.ParseResponse)
+	err := c.cc.Invoke(ctx, PluginService_Parse_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,10 +106,14 @@ func (c *pluginServiceClient) ExportToFile(ctx context.Context, in *messages.Exp
 // for forward compatibility.
 type PluginServiceServer interface {
 	PluginInfo(context.Context, *messages.PluginInfoRequest) (*messages.PluginInfoResponse, error)
-	// ImportFile imports a file into the plugin
-	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
-	ImportFile(context.Context, *messages.ImportFileRequest) (*messages.ImportFileResponse, error)
+	// ParseFromFile parses a local file and returns the tunes in the file.
+	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error.
+	ParseFromFile(context.Context, *messages.ParseFromFileRequest) (*messages.ParseFromFileResponse, error)
+	// Parse parses the data and returns the tunes from it.
+	Parse(context.Context, *messages.ParseRequest) (*messages.ParseResponse, error)
+	// Export exports the tunes to data that can be restored to a file.
 	Export(context.Context, *messages.ExportRequest) (*messages.ExportResponse, error)
+	// ExportToFile exports the tunes to a local file.
 	ExportToFile(context.Context, *messages.ExportToFileRequest) (*messages.ExportToFileResponse, error)
 	mustEmbedUnimplementedPluginServiceServer()
 }
@@ -109,8 +128,11 @@ type UnimplementedPluginServiceServer struct{}
 func (UnimplementedPluginServiceServer) PluginInfo(context.Context, *messages.PluginInfoRequest) (*messages.PluginInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PluginInfo not implemented")
 }
-func (UnimplementedPluginServiceServer) ImportFile(context.Context, *messages.ImportFileRequest) (*messages.ImportFileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ImportFile not implemented")
+func (UnimplementedPluginServiceServer) ParseFromFile(context.Context, *messages.ParseFromFileRequest) (*messages.ParseFromFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ParseFromFile not implemented")
+}
+func (UnimplementedPluginServiceServer) Parse(context.Context, *messages.ParseRequest) (*messages.ParseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Parse not implemented")
 }
 func (UnimplementedPluginServiceServer) Export(context.Context, *messages.ExportRequest) (*messages.ExportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
@@ -157,20 +179,38 @@ func _PluginService_PluginInfo_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PluginService_ImportFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(messages.ImportFileRequest)
+func _PluginService_ParseFromFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(messages.ParseFromFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PluginServiceServer).ImportFile(ctx, in)
+		return srv.(PluginServiceServer).ParseFromFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PluginService_ImportFile_FullMethodName,
+		FullMethod: PluginService_ParseFromFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServiceServer).ImportFile(ctx, req.(*messages.ImportFileRequest))
+		return srv.(PluginServiceServer).ParseFromFile(ctx, req.(*messages.ParseFromFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PluginService_Parse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(messages.ParseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginServiceServer).Parse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginService_Parse_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginServiceServer).Parse(ctx, req.(*messages.ParseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -223,8 +263,12 @@ var PluginService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PluginService_PluginInfo_Handler,
 		},
 		{
-			MethodName: "ImportFile",
-			Handler:    _PluginService_ImportFile_Handler,
+			MethodName: "ParseFromFile",
+			Handler:    _PluginService_ParseFromFile_Handler,
+		},
+		{
+			MethodName: "Parse",
+			Handler:    _PluginService_Parse_Handler,
 		},
 		{
 			MethodName: "Export",

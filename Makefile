@@ -6,8 +6,11 @@ clean:
 build: clean
 	buf generate
 
-lint:
-	buf lint && golangci-lint run
+buf-lint:
+	buf lint
+
+go-lint:
+	golangci-lint run
 
 format:
 	buf format -w

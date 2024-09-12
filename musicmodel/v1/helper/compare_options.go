@@ -14,8 +14,15 @@ import (
 )
 
 var MusicModelCompareOptions = cmpopts.IgnoreUnexported(
-	messages.ImportFileResponse{},
-	messages.ImportedTune{},
+	messages.ParseFromFileRequest{},
+	messages.ParseFromFileResponse{},
+	messages.ParseRequest{},
+	messages.ParseResponse{},
+	messages.ParsedTune{},
+	messages.ExportRequest{},
+	messages.ExportResponse{},
+	messages.ExportToFileRequest{},
+	messages.ExportToFileResponse{},
 	tune.Tune{},
 	measure.Measure{},
 	measure.TimeSignature{},

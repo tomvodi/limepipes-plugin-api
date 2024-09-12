@@ -8,7 +8,7 @@ env:
 
 on:
   pull_request:
-    types: [opened, edited, labeled, unlabeled]
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled]
 
 jobs:
   go-linting:
@@ -34,7 +34,7 @@ jobs:
           version: 1.35.1
           format: true
           lint: true
-          breaking: true
+          breaking: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'buf skip breaking') }}
 
   test-and-coverage:
     name: Go test and coverage check

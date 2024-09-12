@@ -5,7 +5,7 @@ import "musicmodel/v1/tune/tune.proto";
 
 option go_package = "messages";
 
-message ImportedTune {
+message ParsedTune {
   // The tune that was imported.
   musicmodel.v1.tune.Tune tune = 1;
 
@@ -15,16 +15,24 @@ message ImportedTune {
   bytes tune_file_data = 2;
 }
 
-message ImportFileRequest {
-  oneof import_file {
-    string file_path = 1; // Import a local file
-    bytes file_data = 2; // Import a file from data
-  }
+message ParseFromFileRequest {
+  string file_path = 1; // Path to local file
 }
 
-message ImportFileResponse {
-  // The tunes that were imported.
+message ParseRequest {
+  bytes data = 2; // Data to parse into tunes
+}
+
+message ParseFromFileResponse {
+  // The tunes that could be parsed.
   // In multi tune file formats like bww, this will contain all the tunes in the file.
   // For single tune file formats like MusicXML, this will contain a single tune.
-  repeated ImportedTune imported_tunes = 1;
+  repeated ParsedTune tunes = 1;
+}
+
+message ParseResponse {
+  // The tunes that could be parsed.
+  // In multi tune file formats like bww, this will contain all the tunes in the file.
+  // For single tune file formats like MusicXML, this will contain a single tune.
+  repeated ParsedTune tunes = 1;
 }

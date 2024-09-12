@@ -38,6 +38,29 @@ func (s *Server) ImportFile(
 	}
 }
 
+func (s *Server) Export(
+	_ context.Context,
+	req *messages.ExportRequest,
+) (*messages.ExportResponse, error) {
+	data, err := s.impl.Export(req.ExportTunes)
+	return &messages.ExportResponse{
+		Data: data,
+	}, err
+}
+
+func (s *Server) ExportToFile(
+	_ context.Context,
+	req *messages.ExportToFileRequest,
+) (*messages.ExportToFileResponse, error) {
+	if req.FilePath != "" {
+		return &messages.ExportToFileResponse{},
+			fmt.Errorf("export to file needs a non empty file path")
+	}
+
+	return &messages.ExportToFileResponse{},
+		s.impl.ExportToLocalFile(req.ExportTunes, req.FilePath)
+}
+
 func NewGrpcServer(
 	impl interfaces.LimePipesPlugin,
 ) *Server {

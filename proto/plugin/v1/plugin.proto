@@ -1,6 +1,7 @@
 syntax = "proto3";
 package plugin.v1;
 
+import "plugin/v1/messages/export.proto";
 import "plugin/v1/messages/import.proto";
 import "plugin/v1/messages/info.proto";
 
@@ -12,4 +13,7 @@ service PluginService {
   // ImportFile imports a file into the plugin
   // When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
   rpc ImportFile(v1.messages.ImportFileRequest) returns (v1.messages.ImportFileResponse) {}
+
+  rpc Export(v1.messages.ExportRequest) returns (v1.messages.ExportResponse) {}
+  rpc ExportToFile(v1.messages.ExportToFileRequest) returns (v1.messages.ExportToFileResponse) {}
 }

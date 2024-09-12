@@ -1,0 +1,33 @@
+syntax = "proto3";
+package plugin.v1.messages;
+
+import "musicmodel/v1/tune/tune.proto";
+
+option go_package = "messages";
+
+message ExportRequest {
+  // The tunes to export.
+  // In multi tune file formats like bww, this will contain all the tunes in the file.
+  // For single tune file formats like MusicXML, this must contain a single tune
+  // if multiple tunes are provided, an error will be returned.
+  repeated musicmodel.v1.tune.Tune export_tunes = 1;
+}
+
+message ExportResponse {
+  // In case it should be exported to data, this will contain the raw data.
+  bytes data = 1;
+}
+
+message ExportToFileRequest {
+  // The tunes to export.
+  // In multi tune file formats like bww, this will contain all the tunes in the file.
+  // For single tune file formats like MusicXML, this must contain a single tune
+  // if multiple tunes are provided, an error will be returned.
+  repeated musicmodel.v1.tune.Tune export_tunes = 1;
+
+  // The path to the file to export the tunes to.
+  // The path must not be empty.
+  string file_path = 2;
+}
+
+message ExportToFileResponse {}

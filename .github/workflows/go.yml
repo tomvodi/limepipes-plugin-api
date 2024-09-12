@@ -8,7 +8,7 @@ env:
 
 on:
   pull_request:
-    types: [opened, edited, labeled, unlabeled]
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled]
 
 jobs:
   go-linting:

@@ -3,11 +3,17 @@ GOBIN ?= $$(go env GOPATH)/bin
 clean:
 	find . -name *.pb.go -delete
 
-build:
+build: clean
 	buf generate
 
 lint:
 	buf lint && golangci-lint run
+
+format:
+	buf format -w
+
+test:
+	go test -v ./...
 
 mocks:
 	mockery

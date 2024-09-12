@@ -80,12 +80,12 @@ func (_c *LimePipesPlugin_Export_Call) RunAndReturn(run func([]*tune.Tune) ([]by
 	return _c
 }
 
-// ExportToLocalFile provides a mock function with given fields: tunes, filepath
-func (_m *LimePipesPlugin) ExportToLocalFile(tunes []*tune.Tune, filepath string) error {
+// ExportToFile provides a mock function with given fields: tunes, filepath
+func (_m *LimePipesPlugin) ExportToFile(tunes []*tune.Tune, filepath string) error {
 	ret := _m.Called(tunes, filepath)
 
 	if len(ret) == 0 {
-		panic("no return value specified for ExportToLocalFile")
+		panic("no return value specified for ExportToFile")
 	}
 
 	var r0 error
@@ -98,53 +98,53 @@ func (_m *LimePipesPlugin) ExportToLocalFile(tunes []*tune.Tune, filepath string
 	return r0
 }
 
-// LimePipesPlugin_ExportToLocalFile_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ExportToLocalFile'
-type LimePipesPlugin_ExportToLocalFile_Call struct {
+// LimePipesPlugin_ExportToFile_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ExportToFile'
+type LimePipesPlugin_ExportToFile_Call struct {
 	*mock.Call
 }
 
-// ExportToLocalFile is a helper method to define mock.On call
+// ExportToFile is a helper method to define mock.On call
 //   - tunes []*tune.Tune
 //   - filepath string
-func (_e *LimePipesPlugin_Expecter) ExportToLocalFile(tunes interface{}, filepath interface{}) *LimePipesPlugin_ExportToLocalFile_Call {
-	return &LimePipesPlugin_ExportToLocalFile_Call{Call: _e.mock.On("ExportToLocalFile", tunes, filepath)}
+func (_e *LimePipesPlugin_Expecter) ExportToFile(tunes interface{}, filepath interface{}) *LimePipesPlugin_ExportToFile_Call {
+	return &LimePipesPlugin_ExportToFile_Call{Call: _e.mock.On("ExportToFile", tunes, filepath)}
 }
 
-func (_c *LimePipesPlugin_ExportToLocalFile_Call) Run(run func(tunes []*tune.Tune, filepath string)) *LimePipesPlugin_ExportToLocalFile_Call {
+func (_c *LimePipesPlugin_ExportToFile_Call) Run(run func(tunes []*tune.Tune, filepath string)) *LimePipesPlugin_ExportToFile_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].([]*tune.Tune), args[1].(string))
 	})
 	return _c
 }
 
-func (_c *LimePipesPlugin_ExportToLocalFile_Call) Return(_a0 error) *LimePipesPlugin_ExportToLocalFile_Call {
+func (_c *LimePipesPlugin_ExportToFile_Call) Return(_a0 error) *LimePipesPlugin_ExportToFile_Call {
 	_c.Call.Return(_a0)
 	return _c
 }
 
-func (_c *LimePipesPlugin_ExportToLocalFile_Call) RunAndReturn(run func([]*tune.Tune, string) error) *LimePipesPlugin_ExportToLocalFile_Call {
+func (_c *LimePipesPlugin_ExportToFile_Call) RunAndReturn(run func([]*tune.Tune, string) error) *LimePipesPlugin_ExportToFile_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
-// Import provides a mock function with given fields: data
-func (_m *LimePipesPlugin) Import(data []byte) (*messages.ImportFileResponse, error) {
+// Parse provides a mock function with given fields: data
+func (_m *LimePipesPlugin) Parse(data []byte) ([]*messages.ParsedTune, error) {
 	ret := _m.Called(data)
 
 	if len(ret) == 0 {
-		panic("no return value specified for Import")
+		panic("no return value specified for Parse")
 	}
 
-	var r0 *messages.ImportFileResponse
+	var r0 []*messages.ParsedTune
 	var r1 error
-	if rf, ok := ret.Get(0).(func([]byte) (*messages.ImportFileResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func([]byte) ([]*messages.ParsedTune, error)); ok {
 		return rf(data)
 	}
-	if rf, ok := ret.Get(0).(func([]byte) *messages.ImportFileResponse); ok {
+	if rf, ok := ret.Get(0).(func([]byte) []*messages.ParsedTune); ok {
 		r0 = rf(data)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*messages.ImportFileResponse)
+			r0 = ret.Get(0).([]*messages.ParsedTune)
 		}
 	}
 
@@ -157,52 +157,52 @@ func (_m *LimePipesPlugin) Import(data []byte) (*messages.ImportFileResponse, er
 	return r0, r1
 }
 
-// LimePipesPlugin_Import_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Import'
-type LimePipesPlugin_Import_Call struct {
+// LimePipesPlugin_Parse_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Parse'
+type LimePipesPlugin_Parse_Call struct {
 	*mock.Call
 }
 
-// Import is a helper method to define mock.On call
+// Parse is a helper method to define mock.On call
 //   - data []byte
-func (_e *LimePipesPlugin_Expecter) Import(data interface{}) *LimePipesPlugin_Import_Call {
-	return &LimePipesPlugin_Import_Call{Call: _e.mock.On("Import", data)}
+func (_e *LimePipesPlugin_Expecter) Parse(data interface{}) *LimePipesPlugin_Parse_Call {
+	return &LimePipesPlugin_Parse_Call{Call: _e.mock.On("Parse", data)}
 }
 
-func (_c *LimePipesPlugin_Import_Call) Run(run func(data []byte)) *LimePipesPlugin_Import_Call {
+func (_c *LimePipesPlugin_Parse_Call) Run(run func(data []byte)) *LimePipesPlugin_Parse_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].([]byte))
 	})
 	return _c
 }
 
-func (_c *LimePipesPlugin_Import_Call) Return(_a0 *messages.ImportFileResponse, _a1 error) *LimePipesPlugin_Import_Call {
+func (_c *LimePipesPlugin_Parse_Call) Return(_a0 []*messages.ParsedTune, _a1 error) *LimePipesPlugin_Parse_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *LimePipesPlugin_Import_Call) RunAndReturn(run func([]byte) (*messages.ImportFileResponse, error)) *LimePipesPlugin_Import_Call {
+func (_c *LimePipesPlugin_Parse_Call) RunAndReturn(run func([]byte) ([]*messages.ParsedTune, error)) *LimePipesPlugin_Parse_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
-// ImportLocalFile provides a mock function with given fields: filePath
-func (_m *LimePipesPlugin) ImportLocalFile(filePath string) (*messages.ImportFileResponse, error) {
+// ParseFromFile provides a mock function with given fields: filePath
+func (_m *LimePipesPlugin) ParseFromFile(filePath string) ([]*messages.ParsedTune, error) {
 	ret := _m.Called(filePath)
 
 	if len(ret) == 0 {
-		panic("no return value specified for ImportLocalFile")
+		panic("no return value specified for ParseFromFile")
 	}
 
-	var r0 *messages.ImportFileResponse
+	var r0 []*messages.ParsedTune
 	var r1 error
-	if rf, ok := ret.Get(0).(func(string) (*messages.ImportFileResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(string) ([]*messages.ParsedTune, error)); ok {
 		return rf(filePath)
 	}
-	if rf, ok := ret.Get(0).(func(string) *messages.ImportFileResponse); ok {
+	if rf, ok := ret.Get(0).(func(string) []*messages.ParsedTune); ok {
 		r0 = rf(filePath)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*messages.ImportFileResponse)
+			r0 = ret.Get(0).([]*messages.ParsedTune)
 		}
 	}
 
@@ -215,30 +215,30 @@ func (_m *LimePipesPlugin) ImportLocalFile(filePath string) (*messages.ImportFil
 	return r0, r1
 }
 
-// LimePipesPlugin_ImportLocalFile_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ImportLocalFile'
-type LimePipesPlugin_ImportLocalFile_Call struct {
+// LimePipesPlugin_ParseFromFile_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ParseFromFile'
+type LimePipesPlugin_ParseFromFile_Call struct {
 	*mock.Call
 }
 
-// ImportLocalFile is a helper method to define mock.On call
+// ParseFromFile is a helper method to define mock.On call
 //   - filePath string
-func (_e *LimePipesPlugin_Expecter) ImportLocalFile(filePath interface{}) *LimePipesPlugin_ImportLocalFile_Call {
-	return &LimePipesPlugin_ImportLocalFile_Call{Call: _e.mock.On("ImportLocalFile", filePath)}
+func (_e *LimePipesPlugin_Expecter) ParseFromFile(filePath interface{}) *LimePipesPlugin_ParseFromFile_Call {
+	return &LimePipesPlugin_ParseFromFile_Call{Call: _e.mock.On("ParseFromFile", filePath)}
 }
 
-func (_c *LimePipesPlugin_ImportLocalFile_Call) Run(run func(filePath string)) *LimePipesPlugin_ImportLocalFile_Call {
+func (_c *LimePipesPlugin_ParseFromFile_Call) Run(run func(filePath string)) *LimePipesPlugin_ParseFromFile_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(string))
 	})
 	return _c
 }
 
-func (_c *LimePipesPlugin_ImportLocalFile_Call) Return(_a0 *messages.ImportFileResponse, _a1 error) *LimePipesPlugin_ImportLocalFile_Call {
+func (_c *LimePipesPlugin_ParseFromFile_Call) Return(_a0 []*messages.ParsedTune, _a1 error) *LimePipesPlugin_ParseFromFile_Call {
 	_c.Call.Return(_a0, _a1)
 	return _c
 }
 
-func (_c *LimePipesPlugin_ImportLocalFile_Call) RunAndReturn(run func(string) (*messages.ImportFileResponse, error)) *LimePipesPlugin_ImportLocalFile_Call {
+func (_c *LimePipesPlugin_ParseFromFile_Call) RunAndReturn(run func(string) ([]*messages.ParsedTune, error)) *LimePipesPlugin_ParseFromFile_Call {
 	_c.Call.Return(run)
 	return _c
 }

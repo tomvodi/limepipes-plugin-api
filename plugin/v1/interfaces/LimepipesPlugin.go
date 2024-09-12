@@ -7,8 +7,10 @@ import (
 
 type LimePipesPlugin interface {
 	PluginInfo() (*messages.PluginInfoResponse, error)
-	ImportLocalFile(filePath string) (*messages.ImportFileResponse, error)
-	Import(data []byte) (*messages.ImportFileResponse, error)
-	ExportToLocalFile(tunes []*tune.Tune, filepath string) error
+
+	ParseFromFile(filePath string) ([]*messages.ParsedTune, error)
+	Parse(data []byte) ([]*messages.ParsedTune, error)
+
+	ExportToFile(tunes []*tune.Tune, filepath string) error
 	Export(tunes []*tune.Tune) ([]byte, error)
 }

@@ -20,8 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PluginService_PluginInfo_FullMethodName = "/plugin.v1.PluginService/PluginInfo"
-	PluginService_ImportFile_FullMethodName = "/plugin.v1.PluginService/ImportFile"
+	PluginService_PluginInfo_FullMethodName   = "/plugin.v1.PluginService/PluginInfo"
+	PluginService_ImportFile_FullMethodName   = "/plugin.v1.PluginService/ImportFile"
+	PluginService_Export_FullMethodName       = "/plugin.v1.PluginService/Export"
+	PluginService_ExportToFile_FullMethodName = "/plugin.v1.PluginService/ExportToFile"
 )
 
 // PluginServiceClient is the client API for PluginService service.
@@ -32,6 +34,8 @@ type PluginServiceClient interface {
 	// ImportFile imports a file into the plugin
 	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
 	ImportFile(ctx context.Context, in *messages.ImportFileRequest, opts ...grpc.CallOption) (*messages.ImportFileResponse, error)
+	Export(ctx context.Context, in *messages.ExportRequest, opts ...grpc.CallOption) (*messages.ExportResponse, error)
+	ExportToFile(ctx context.Context, in *messages.ExportToFileRequest, opts ...grpc.CallOption) (*messages.ExportToFileResponse, error)
 }
 
 type pluginServiceClient struct {
@@ -62,6 +66,26 @@ func (c *pluginServiceClient) ImportFile(ctx context.Context, in *messages.Impor
 	return out, nil
 }
 
+func (c *pluginServiceClient) Export(ctx context.Context, in *messages.ExportRequest, opts ...grpc.CallOption) (*messages.ExportResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(messages.ExportResponse)
+	err := c.cc.Invoke(ctx, PluginService_Export_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pluginServiceClient) ExportToFile(ctx context.Context, in *messages.ExportToFileRequest, opts ...grpc.CallOption) (*messages.ExportToFileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(messages.ExportToFileResponse)
+	err := c.cc.Invoke(ctx, PluginService_ExportToFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PluginServiceServer is the server API for PluginService service.
 // All implementations must embed UnimplementedPluginServiceServer
 // for forward compatibility.
@@ -70,6 +94,8 @@ type PluginServiceServer interface {
 	// ImportFile imports a file into the plugin
 	// When the filetype is not supported by the plugin it returns an UNIMPLEMENTED error
 	ImportFile(context.Context, *messages.ImportFileRequest) (*messages.ImportFileResponse, error)
+	Export(context.Context, *messages.ExportRequest) (*messages.ExportResponse, error)
+	ExportToFile(context.Context, *messages.ExportToFileRequest) (*messages.ExportToFileResponse, error)
 	mustEmbedUnimplementedPluginServiceServer()
 }
 
@@ -85,6 +111,12 @@ func (UnimplementedPluginServiceServer) PluginInfo(context.Context, *messages.Pl
 }
 func (UnimplementedPluginServiceServer) ImportFile(context.Context, *messages.ImportFileRequest) (*messages.ImportFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ImportFile not implemented")
+}
+func (UnimplementedPluginServiceServer) Export(context.Context, *messages.ExportRequest) (*messages.ExportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
+}
+func (UnimplementedPluginServiceServer) ExportToFile(context.Context, *messages.ExportToFileRequest) (*messages.ExportToFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportToFile not implemented")
 }
 func (UnimplementedPluginServiceServer) mustEmbedUnimplementedPluginServiceServer() {}
 func (UnimplementedPluginServiceServer) testEmbeddedByValue()                       {}
@@ -143,6 +175,42 @@ func _PluginService_ImportFile_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PluginService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(messages.ExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginServiceServer).Export(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginService_Export_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginServiceServer).Export(ctx, req.(*messages.ExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PluginService_ExportToFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(messages.ExportToFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginServiceServer).ExportToFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginService_ExportToFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginServiceServer).ExportToFile(ctx, req.(*messages.ExportToFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PluginService_ServiceDesc is the grpc.ServiceDesc for PluginService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -157,6 +225,14 @@ var PluginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ImportFile",
 			Handler:    _PluginService_ImportFile_Handler,
+		},
+		{
+			MethodName: "Export",
+			Handler:    _PluginService_Export_Handler,
+		},
+		{
+			MethodName: "ExportToFile",
+			Handler:    _PluginService_ExportToFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

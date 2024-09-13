@@ -15,7 +15,7 @@ enum Fix {
   SkipSymbol = 1;
 }
 
-message ImportMessage {
+message ParserMessage {
   string symbol = 1;
   Severity severity = 2;
   string text = 3;

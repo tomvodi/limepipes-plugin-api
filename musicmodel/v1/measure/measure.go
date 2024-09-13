@@ -8,10 +8,10 @@ func (x *Measure) IsNil() bool {
 	return reflect.DeepEqual(x, &Measure{})
 }
 
-func (x *Measure) AddMessage(msg *ImportMessage) {
-	if x.ImportMessages == nil {
-		x.ImportMessages = []*ImportMessage{}
+func (x *Measure) AddMessage(msg *ParserMessage) {
+	if x.ParserMessages == nil {
+		x.ParserMessages = []*ParserMessage{}
 	}
 
-	x.ImportMessages = append(x.ImportMessages, msg)
+	x.ParserMessages = append(x.ParserMessages, msg)
 }

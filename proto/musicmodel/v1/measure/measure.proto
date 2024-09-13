@@ -2,7 +2,7 @@ syntax = "proto3";
 package musicmodel.v1.measure;
 
 import "musicmodel/v1/barline/barline.proto";
-import "musicmodel/v1/measure/import_message.proto";
+import "musicmodel/v1/measure/parser_message.proto";
 import "musicmodel/v1/measure/time_signature.proto";
 import "musicmodel/v1/symbols/symbol.proto";
 
@@ -15,5 +15,5 @@ message Measure {
   repeated symbols.Symbol symbols = 4;
   repeated string comments = 5;
   repeated string inline_text = 6;
-  repeated measure.ImportMessage import_messages = 7;
+  repeated measure.ParserMessage parser_messages = 7;
 }

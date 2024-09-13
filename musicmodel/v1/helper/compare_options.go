@@ -26,7 +26,7 @@ var MusicModelCompareOptions = cmpopts.IgnoreUnexported(
 	tune.Tune{},
 	measure.Measure{},
 	measure.TimeSignature{},
-	measure.ImportMessage{},
+	measure.ParserMessage{},
 	symbols.Symbol{},
 	symbols.Note{},
 	tune.Tune{},

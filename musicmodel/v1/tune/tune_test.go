@@ -10,27 +10,27 @@ func TestTune_ImportMessages(t *testing.T) {
 	g := NewGomegaWithT(t)
 	tu := &Tune{}
 	g.Expect(tu.ImportMessages()).To(BeNil())
-	msg1 := &measure.ImportMessage{
+	msg1 := &measure.ParserMessage{
 		Severity: measure.Severity_Error,
 		Text:     "error",
 	}
-	msg2 := &measure.ImportMessage{
+	msg2 := &measure.ParserMessage{
 		Symbol: "asdf",
 		Text:   "warning",
 	}
-	msg3 := &measure.ImportMessage{
+	msg3 := &measure.ParserMessage{
 		Severity: measure.Severity_Warning,
 		Text:     "warning",
 	}
 	tu.Measures = []*measure.Measure{
 		{
-			ImportMessages: []*measure.ImportMessage{
+			ParserMessages: []*measure.ParserMessage{
 				msg1,
 				msg2,
 			},
 		},
 		{
-			ImportMessages: []*measure.ImportMessage{
+			ParserMessages: []*measure.ParserMessage{
 				msg3,
 			},
 		},

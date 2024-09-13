@@ -15,7 +15,7 @@ func TestMeasure_IsNil(t *testing.T) {
 		Symbols        []*symbols.Symbol
 		Comments       []string
 		InlineText     []string
-		ImportMessages []*ImportMessage
+		ParserMessages []*ParserMessage
 	}
 	tests := []struct {
 		name   string
@@ -44,7 +44,7 @@ func TestMeasure_IsNil(t *testing.T) {
 				Symbols:        tt.fields.Symbols,
 				Comments:       tt.fields.Comments,
 				InlineText:     tt.fields.InlineText,
-				ImportMessages: tt.fields.ImportMessages,
+				ParserMessages: tt.fields.ParserMessages,
 			}
 			if got := x.IsNil(); got != tt.want {
 				t.Errorf("IsNil() = %v, want %v", got, tt.want)
@@ -56,14 +56,14 @@ func TestMeasure_IsNil(t *testing.T) {
 func TestMeasure_AddMessage(t *testing.T) {
 	g := NewGomegaWithT(t)
 	m := &Measure{}
-	g.Expect(m.ImportMessages).To(BeNil())
-	im := &ImportMessage{
+	g.Expect(m.ParserMessages).To(BeNil())
+	im := &ParserMessage{
 		Symbol:   "sym",
 		Severity: 0,
 		Text:     "",
 		Fix:      0,
 	}
 	m.AddMessage(im)
-	g.Expect(m.ImportMessages).To(HaveLen(1))
-	g.Expect(m.ImportMessages[0]).To(Equal(im))
+	g.Expect(m.ParserMessages).To(HaveLen(1))
+	g.Expect(m.ParserMessages[0]).To(Equal(im))
 }

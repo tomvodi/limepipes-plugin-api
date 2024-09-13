@@ -4,11 +4,11 @@ import (
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/measure"
 )
 
-func (x *Tune) ImportMessages() []*measure.ImportMessage {
-	var messages []*measure.ImportMessage
+func (x *Tune) ImportMessages() []*measure.ParserMessage {
+	var messages []*measure.ParserMessage
 
 	for _, m := range x.Measures {
-		messages = append(messages, m.ImportMessages...)
+		messages = append(messages, m.ParserMessages...)
 	}
 
 	return messages

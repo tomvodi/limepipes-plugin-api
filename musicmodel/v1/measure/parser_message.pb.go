@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        (unknown)
-// source: musicmodel/v1/measure/import_message.proto
+// source: musicmodel/v1/measure/parser_message.proto
 
 package measure
 
@@ -56,11 +56,11 @@ func (x Severity) String() string {
 }
 
 func (Severity) Descriptor() protoreflect.EnumDescriptor {
-	return file_musicmodel_v1_measure_import_message_proto_enumTypes[0].Descriptor()
+	return file_musicmodel_v1_measure_parser_message_proto_enumTypes[0].Descriptor()
 }
 
 func (Severity) Type() protoreflect.EnumType {
-	return &file_musicmodel_v1_measure_import_message_proto_enumTypes[0]
+	return &file_musicmodel_v1_measure_parser_message_proto_enumTypes[0]
 }
 
 func (x Severity) Number() protoreflect.EnumNumber {
@@ -69,7 +69,7 @@ func (x Severity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Severity.Descriptor instead.
 func (Severity) EnumDescriptor() ([]byte, []int) {
-	return file_musicmodel_v1_measure_import_message_proto_rawDescGZIP(), []int{0}
+	return file_musicmodel_v1_measure_parser_message_proto_rawDescGZIP(), []int{0}
 }
 
 type Fix int32
@@ -102,11 +102,11 @@ func (x Fix) String() string {
 }
 
 func (Fix) Descriptor() protoreflect.EnumDescriptor {
-	return file_musicmodel_v1_measure_import_message_proto_enumTypes[1].Descriptor()
+	return file_musicmodel_v1_measure_parser_message_proto_enumTypes[1].Descriptor()
 }
 
 func (Fix) Type() protoreflect.EnumType {
-	return &file_musicmodel_v1_measure_import_message_proto_enumTypes[1]
+	return &file_musicmodel_v1_measure_parser_message_proto_enumTypes[1]
 }
 
 func (x Fix) Number() protoreflect.EnumNumber {
@@ -115,10 +115,10 @@ func (x Fix) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Fix.Descriptor instead.
 func (Fix) EnumDescriptor() ([]byte, []int) {
-	return file_musicmodel_v1_measure_import_message_proto_rawDescGZIP(), []int{1}
+	return file_musicmodel_v1_measure_parser_message_proto_rawDescGZIP(), []int{1}
 }
 
-type ImportMessage struct {
+type ParserMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -129,23 +129,23 @@ type ImportMessage struct {
 	Fix      Fix      `protobuf:"varint,4,opt,name=fix,proto3,enum=musicmodel.v1.measure.Fix" json:"fix,omitempty"`
 }
 
-func (x *ImportMessage) Reset() {
-	*x = ImportMessage{}
+func (x *ParserMessage) Reset() {
+	*x = ParserMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_musicmodel_v1_measure_import_message_proto_msgTypes[0]
+		mi := &file_musicmodel_v1_measure_parser_message_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *ImportMessage) String() string {
+func (x *ParserMessage) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ImportMessage) ProtoMessage() {}
+func (*ParserMessage) ProtoMessage() {}
 
-func (x *ImportMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_musicmodel_v1_measure_import_message_proto_msgTypes[0]
+func (x *ParserMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_musicmodel_v1_measure_parser_message_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -156,47 +156,47 @@ func (x *ImportMessage) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ImportMessage.ProtoReflect.Descriptor instead.
-func (*ImportMessage) Descriptor() ([]byte, []int) {
-	return file_musicmodel_v1_measure_import_message_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use ParserMessage.ProtoReflect.Descriptor instead.
+func (*ParserMessage) Descriptor() ([]byte, []int) {
+	return file_musicmodel_v1_measure_parser_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ImportMessage) GetSymbol() string {
+func (x *ParserMessage) GetSymbol() string {
 	if x != nil {
 		return x.Symbol
 	}
 	return ""
 }
 
-func (x *ImportMessage) GetSeverity() Severity {
+func (x *ParserMessage) GetSeverity() Severity {
 	if x != nil {
 		return x.Severity
 	}
 	return Severity_NoSeverity
 }
 
-func (x *ImportMessage) GetText() string {
+func (x *ParserMessage) GetText() string {
 	if x != nil {
 		return x.Text
 	}
 	return ""
 }
 
-func (x *ImportMessage) GetFix() Fix {
+func (x *ParserMessage) GetFix() Fix {
 	if x != nil {
 		return x.Fix
 	}
 	return Fix_NoFix
 }
 
-var File_musicmodel_v1_measure_import_message_proto protoreflect.FileDescriptor
+var File_musicmodel_v1_measure_parser_message_proto protoreflect.FileDescriptor
 
-var file_musicmodel_v1_measure_import_message_proto_rawDesc = []byte{
+var file_musicmodel_v1_measure_parser_message_proto_rawDesc = []byte{
 	0x0a, 0x2a, 0x6d, 0x75, 0x73, 0x69, 0x63, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x76, 0x31, 0x2f,
-	0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2f, 0x69, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x6d,
+	0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x2f, 0x70, 0x61, 0x72, 0x73, 0x65, 0x72, 0x5f, 0x6d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x15, 0x6d, 0x75,
 	0x73, 0x69, 0x63, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x65, 0x61, 0x73,
-	0x75, 0x72, 0x65, 0x22, 0xa6, 0x01, 0x0a, 0x0d, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65,
+	0x75, 0x72, 0x65, 0x22, 0xa6, 0x01, 0x0a, 0x0d, 0x50, 0x61, 0x72, 0x73, 0x65, 0x72, 0x4d, 0x65,
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x79, 0x6d, 0x62, 0x6f, 0x6c, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x79, 0x6d, 0x62, 0x6f, 0x6c, 0x12, 0x3b, 0x0a,
 	0x08, 0x73, 0x65, 0x76, 0x65, 0x72, 0x69, 0x74, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32,
@@ -214,8 +214,8 @@ var file_musicmodel_v1_measure_import_message_proto_rawDesc = []byte{
 	0x78, 0x12, 0x09, 0x0a, 0x05, 0x4e, 0x6f, 0x46, 0x69, 0x78, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a,
 	0x53, 0x6b, 0x69, 0x70, 0x53, 0x79, 0x6d, 0x62, 0x6f, 0x6c, 0x10, 0x01, 0x42, 0xe4, 0x01, 0x0a,
 	0x19, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x75, 0x73, 0x69, 0x63, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
-	0x76, 0x31, 0x2e, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x42, 0x12, 0x49, 0x6d, 0x70, 0x6f,
-	0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
+	0x76, 0x31, 0x2e, 0x6d, 0x65, 0x61, 0x73, 0x75, 0x72, 0x65, 0x42, 0x12, 0x50, 0x61, 0x72, 0x73,
+	0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
 	0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x6f, 0x6d,
 	0x76, 0x6f, 0x64, 0x69, 0x2f, 0x6c, 0x69, 0x6d, 0x65, 0x70, 0x69, 0x70, 0x65, 0x73, 0x2d, 0x70,
 	0x6c, 0x75, 0x67, 0x69, 0x6e, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x75, 0x73, 0x69, 0x63, 0x6d,
@@ -231,27 +231,27 @@ var file_musicmodel_v1_measure_import_message_proto_rawDesc = []byte{
 }
 
 var (
-	file_musicmodel_v1_measure_import_message_proto_rawDescOnce sync.Once
-	file_musicmodel_v1_measure_import_message_proto_rawDescData = file_musicmodel_v1_measure_import_message_proto_rawDesc
+	file_musicmodel_v1_measure_parser_message_proto_rawDescOnce sync.Once
+	file_musicmodel_v1_measure_parser_message_proto_rawDescData = file_musicmodel_v1_measure_parser_message_proto_rawDesc
 )
 
-func file_musicmodel_v1_measure_import_message_proto_rawDescGZIP() []byte {
-	file_musicmodel_v1_measure_import_message_proto_rawDescOnce.Do(func() {
-		file_musicmodel_v1_measure_import_message_proto_rawDescData = protoimpl.X.CompressGZIP(file_musicmodel_v1_measure_import_message_proto_rawDescData)
+func file_musicmodel_v1_measure_parser_message_proto_rawDescGZIP() []byte {
+	file_musicmodel_v1_measure_parser_message_proto_rawDescOnce.Do(func() {
+		file_musicmodel_v1_measure_parser_message_proto_rawDescData = protoimpl.X.CompressGZIP(file_musicmodel_v1_measure_parser_message_proto_rawDescData)
 	})
-	return file_musicmodel_v1_measure_import_message_proto_rawDescData
+	return file_musicmodel_v1_measure_parser_message_proto_rawDescData
 }
 
-var file_musicmodel_v1_measure_import_message_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_musicmodel_v1_measure_import_message_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_musicmodel_v1_measure_import_message_proto_goTypes = []any{
+var file_musicmodel_v1_measure_parser_message_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_musicmodel_v1_measure_parser_message_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_musicmodel_v1_measure_parser_message_proto_goTypes = []any{
 	(Severity)(0),         // 0: musicmodel.v1.measure.Severity
 	(Fix)(0),              // 1: musicmodel.v1.measure.Fix
-	(*ImportMessage)(nil), // 2: musicmodel.v1.measure.ImportMessage
+	(*ParserMessage)(nil), // 2: musicmodel.v1.measure.ParserMessage
 }
-var file_musicmodel_v1_measure_import_message_proto_depIdxs = []int32{
-	0, // 0: musicmodel.v1.measure.ImportMessage.severity:type_name -> musicmodel.v1.measure.Severity
-	1, // 1: musicmodel.v1.measure.ImportMessage.fix:type_name -> musicmodel.v1.measure.Fix
+var file_musicmodel_v1_measure_parser_message_proto_depIdxs = []int32{
+	0, // 0: musicmodel.v1.measure.ParserMessage.severity:type_name -> musicmodel.v1.measure.Severity
+	1, // 1: musicmodel.v1.measure.ParserMessage.fix:type_name -> musicmodel.v1.measure.Fix
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -259,14 +259,14 @@ var file_musicmodel_v1_measure_import_message_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_musicmodel_v1_measure_import_message_proto_init() }
-func file_musicmodel_v1_measure_import_message_proto_init() {
-	if File_musicmodel_v1_measure_import_message_proto != nil {
+func init() { file_musicmodel_v1_measure_parser_message_proto_init() }
+func file_musicmodel_v1_measure_parser_message_proto_init() {
+	if File_musicmodel_v1_measure_parser_message_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_musicmodel_v1_measure_import_message_proto_msgTypes[0].Exporter = func(v any, i int) any {
-			switch v := v.(*ImportMessage); i {
+		file_musicmodel_v1_measure_parser_message_proto_msgTypes[0].Exporter = func(v any, i int) any {
+			switch v := v.(*ParserMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -282,19 +282,19 @@ func file_musicmodel_v1_measure_import_message_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_musicmodel_v1_measure_import_message_proto_rawDesc,
+			RawDescriptor: file_musicmodel_v1_measure_parser_message_proto_rawDesc,
 			NumEnums:      2,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_musicmodel_v1_measure_import_message_proto_goTypes,
-		DependencyIndexes: file_musicmodel_v1_measure_import_message_proto_depIdxs,
-		EnumInfos:         file_musicmodel_v1_measure_import_message_proto_enumTypes,
-		MessageInfos:      file_musicmodel_v1_measure_import_message_proto_msgTypes,
+		GoTypes:           file_musicmodel_v1_measure_parser_message_proto_goTypes,
+		DependencyIndexes: file_musicmodel_v1_measure_parser_message_proto_depIdxs,
+		EnumInfos:         file_musicmodel_v1_measure_parser_message_proto_enumTypes,
+		MessageInfos:      file_musicmodel_v1_measure_parser_message_proto_msgTypes,
 	}.Build()
-	File_musicmodel_v1_measure_import_message_proto = out.File
-	file_musicmodel_v1_measure_import_message_proto_rawDesc = nil
-	file_musicmodel_v1_measure_import_message_proto_goTypes = nil
-	file_musicmodel_v1_measure_import_message_proto_depIdxs = nil
+	File_musicmodel_v1_measure_parser_message_proto = out.File
+	file_musicmodel_v1_measure_parser_message_proto_rawDesc = nil
+	file_musicmodel_v1_measure_parser_message_proto_goTypes = nil
+	file_musicmodel_v1_measure_parser_message_proto_depIdxs = nil
 }

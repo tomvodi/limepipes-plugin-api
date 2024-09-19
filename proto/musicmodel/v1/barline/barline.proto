@@ -12,7 +12,7 @@ enum Type {
 }
 
 enum Time {
-  NoTimee = 0;
+  NoTime = 0;
   Segno = 1;
   Dalsegno = 2;
   Fine = 3;

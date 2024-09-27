@@ -19,4 +19,6 @@ message Symbol {
   optional symbols.tuplet.Tuplet tuplet = 3;
   optional symbols.timeline.TimeLine timeline = 4;
   optional uint64 tempo_change = 5;
+  repeated string comments = 6;
+  repeated string inline_texts = 7;
 }

@@ -19,5 +19,4 @@ message Note {
   tie.Tie tie = 6;
   embellishment.Embellishment embellishment = 7;
   movement.Movement movement = 8;
-  string comment = 9;
 }

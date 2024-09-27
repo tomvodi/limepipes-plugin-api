@@ -14,6 +14,6 @@ message Measure {
   measure.TimeSignature time = 3;
   repeated symbols.Symbol symbols = 4;
   repeated string comments = 5;
-  repeated string inline_text = 6;
+  repeated string inline_texts = 6;
   repeated measure.ParserMessage parser_messages = 7;
 }

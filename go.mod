@@ -1,6 +1,6 @@
 module github.com/tomvodi/limepipes-plugin-api
 
-go 1.22
+go 1.23
 
 require (
 	github.com/goccy/go-yaml v1.12.0

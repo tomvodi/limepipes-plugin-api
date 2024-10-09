@@ -6,26 +6,20 @@ import (
 	"github.com/tomvodi/limepipes-plugin-api/musicmodel/v1/symbols/accidental"
 )
 
+// IsValid returns true if the note has a pitch and length.
 func (x *Note) IsValid() bool {
-	if x.Pitch == pitch.Pitch_NoPitch && x.Length == length.Length_NoLength {
+	if x == nil {
 		return false
 	}
-	return true
+
+	if x.hasPitchAndLength() {
+		return true
+	}
+
+	return false
 }
 
-// IsIncomplete returns true, if the note has no pitch and length but already other
-// properties like an embellishment or an accidental
-// this is the case, when the bww symbols which modify the note are preceding the note in
-// bww code
-func (x *Note) IsIncomplete() bool {
-	return !x.HasPitchOrLength()
-}
-
-func (x *Note) HasPitchOrLength() bool {
-	return x.Pitch != pitch.Pitch_NoPitch || x.Length != length.Length_NoLength
-}
-
-func (x *Note) HasPitchAndLength() bool {
+func (x *Note) hasPitchAndLength() bool {
 	return x.Pitch != pitch.Pitch_NoPitch && x.Length != length.Length_NoLength
 }
 

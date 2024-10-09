@@ -12,7 +12,7 @@ message Tune {
   string arranger = 4;
   repeated string footer = 5;
   repeated string comments = 6;
-  repeated string inline_text = 7;
+  repeated string inline_texts = 7;
   uint32 tempo = 8;
   repeated measure.Measure measures = 9;
 }
